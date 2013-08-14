@@ -160,7 +160,7 @@ $('#followup').slider({
 
 // Activated when the slider moves. Updates the label for the slider.
 function SlideFunction(arrSlider, ui) {
-	// There is a bug in jQuery UI 1.8.18 that allow the slider to go negative sometimes. This is a quick patch.
+	// There is a bug in some old browers that make this go negative. This fixes that.
 	if (ui.value == -1) {
 		ui.value = 0;
 		};
