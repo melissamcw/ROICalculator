@@ -10,12 +10,12 @@
 
 // A namespace for storing all the variables used in the calculations
 $.roi = {
-	// iExample : [ item ID, item label ID, value ]
+	// arrExample : [ item ID, item label ID, value ]
 	// These variables are in the same order as they are on the website to make it easier to read them
-	arrLawStaff : ["#lawstaff", "lblLawStaff", 2],
-	arrLawCost: ["#lawcost", "lblLawCost", 150000],
-	arrSuppStaff: ["#suppstaff", "lblSuppStaff", 2],
-	arrSuppCost: ["#suppcost", "lblSuppCost", 60000],
+	arrLawStaff : ["#lawstaff", "#lblLawStaff", 2],
+	arrLawCost: ["#lawcost", "#lblLawCost", 150000],
+	arrSuppStaff: ["#suppstaff", "#lblSuppStaff", 2],
+	arrSuppCost: ["#suppcost", "#lblSuppCost", 60000],
 	arrMonitoring : ["#monitoring", "#lblMonitoring", 0],
 	arrUpdating : ["#updating", "#lblUpdating", 0],
 	arrCounselAdvice : ["#counseladvice", "#lblCounselAdvice", 0],
