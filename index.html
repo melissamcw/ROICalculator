@@ -22,131 +22,68 @@
 
 		<!-- Dropdown Menus -->
 
-	<p><h3>Law Staff:</h3>
-		<select id="lawstaff">
-			<option value="1">1</option>
-			<option value="2" selected="selected">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-			<option value="9">9</option>
-			<option value="10">10</option>
+	<p><h3>Industry:</h3>
+		<select id="IndustryDropdown">
+			<option value="airlines" selected="selected">Airlines</option>
+			<option value="banks">Banks</option>
+			<option value="csp">Cable Service Providers</option>
+			<option value="conelect">Consumer Electronics</option>
+			<option value="ccp">Credit Card Providers</option>
+			<option value="hp">Health Plans</option>
+			<option value="hotels">Hotels</option>
+			<option value="inpro">Insurance Providers</option>
+			<option value="invfirm">Investment Firms</option>
+			<option value="isps">ISPs</option>
+			<option value="retailers">Retailers</option>
+			<option value="wcs">Wireless Carriers</option>
 		</select>
-	</p>	
+	</p>
 
-	<p><h3>Law Cost:</h3>
-		<select id="lawcost">
-			<option value="80000">$80,000</option>
-			<option value="100000">$100,000</option>
-			<option value="120000">$120,000</option>
-			<option value="150000" selected="selected">$150,000</option>
-			<option value="175000">$175,000</option>
-			<option value="200000">$200,000</option>
-			<option value="250000">$250,000</option>
-			<option value="300000">$300,000</option>
-		</select>
-	</p>	
-	
-		<p><h3>Support Staff:</h3>
-		<select id="suppstaff">
-			<option value="1">1</option>
-			<option value="2" selected="selected">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-			<option value="9">9</option>
-			<option value="10">10</option>
-		</select>
-	</p>	
-	
-		<p><h3>Support Cost:</h3>
-		<select id="suppcost">
-			<option value="30000">$30,000</option>
-			<option value="40000">$40,000</option>
-			<option value="50000">$50,000</option>
-			<option value="60000" selected="selected">$60,000</option>
-			<option value="70000">$70,000</option>
-			<option value="80000">$80,000</option>
-		</select>
-	</p>	
-	
-		<!-- Sliders -->
-		
-		<p>
-			<h3>Monitoring:</h3><input type="text" id="lblMonitoring" readonly="readonly"  value="0 Hours" />
+	<p>
+		<h3>Total Customers:</h3><input type="text" id="lblCustomers" readonly="readonly"  value="22 Million" />
 		</p>
-		<div id="monitoring"  class="initialize"></div>
-		
-		<p>
-			<h3>Updating:</h3><input type="text" id="lblUpdating" readonly="readonly"  value="0 Hours" />
+		<div id="CustomersSlider"></div>
+
+	<p>
+		<h3>Avg. Revenue Basic Customer:</h3><input type="text" id="lblRevBasic" readonly="readonly"  value="$500" />
 		</p>
-		<div id="updating"  class="initialize"></div>
-		
-				<p>
-			<h3>Counsel advice:</h3><input type="text" id="lblCounselAdvice" readonly="readonly"  value="0 Hours" />
+		<div id="RevBasicSlider"  class="initialize"></div>
+
+	<p>
+		<h3>Avg. Revenue Enhanced Customer:</h3><input type="text" id="lblRevEnhan" readonly="readonly"  value="$1000" />
 		</p>
-		<div id="counseladvice"  class="initialize"></div>
-		
-		<p>
-			<h3>Flag Gaps:</h3><input type="text" id="lblFlagGaps" readonly="readonly"  value="0 Hours" />
+		<div id="RevEnhanSlider"  class="initialize"></div>
+
+	<p>
+		<h3>Avg. Cost per Call:</h3><input type="text" id="lblCostPerCall" readonly="readonly"  value="$5.85" />
 		</p>
-		<div id="flaggaps"  class="initialize"></div>
-		
-		<p>
-			<h3>Reviewing:</h3><input type="text" id="lblReviewing" readonly="readonly"  value="0 Hours" />
+		<div id="CostPerCallSlider"  class="initialize"></div>
+
+	<p>
+		<h3>Total Annual Call Volume:</h3><input type="text" id="lblCallVolume" readonly="readonly"  value="22 Million" />
 		</p>
-		<div id="reviewing"  class="initialize"></div>
-		
-		<p>
-			<h3>Preparing:</h3><input type="text" id="lblPreparing" readonly="readonly"  value="0 Hours" />
+		<div id="CallVolumeSlider"  class="initialize"></div>
+
+	<p>
+		<h3>Avg. Call Duration (Self-Service Assist):</h3><input type="text" id="lblCallDuration" readonly="readonly"  value="300 seconds" />
 		</p>
-		<div id="preparing"  class="initialize"></div>
-		
-		<p>
-			<h3>Collecting:</h3><input type="text" id="lblCollecting" readonly="readonly"  value="0 Hours" />
-		</p>
-		<div id="collecting"  class="initialize"></div>
-		
-		<p>
-			<h3>Flag Gaps CO:</h3><input type="text" id="lblFlagGapsCO" readonly="readonly"  value="0 Hours" />
-		</p>
-		<div id="flaggapsCO"  class="initialize"></div>
-		
-		<p>
-			<h3>Documenting:</h3><input type="text" id="lblDocumenting" readonly="readonly"  value="0 Hours" />
-		</p>
-		<div id="documenting"  class="initialize"></div>
-		
-		<p>
-			<h3>Follow up:</h3><input type="text" id="lblFollowUp" readonly="readonly"  value="0 Hours" />
-		</p>
-		<div id="followup"  class="initialize"></div>
+		<div id="CallDurationSlider"  class="initialize"></div>
 		
 		<!-- Totals -->
 		<p>
-		<h3>Total Hours:</h3>
+		<h3>Laggards:</h3>
 		<input type="text" id="totalhours" readonly="readonly" value="0 Hours" />
 		</p>
 		
 		<p>
-		<h3>Total Cost:</h3>
+		<h3>Leaders:</h3>
 		<input type="text" id="totalcost" readonly="readonly" value="0 Hours" />
 		</p>
 		
 		<p>
-		<h3>Time Savings:</h3>
+		<h3>Point Difference:</h3>
 		<input type="text" id="timesaved" readonly="readonly" value="0 Hours" />
 		</p>
 		
-		<p>
-		<h3>Cost Savings:</h3>
-		<input type="text" id="costsaved" readonly="readonly" value="0 Hours" />
-		</p>
 	</body>
 </html>

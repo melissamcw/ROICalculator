@@ -5,56 +5,108 @@
 // and the variables that represent them in code.
 
 // A namespace for storing all the variables used in the calculations
-$.industVar = {
+$.roi = {
 	// arrExample : [ item ID, item label ID, value ]
 	// These variables are in the same order as they are on the website to make it easier to read them
-	wallet : {
-		low: {
-			airlines: 56,
-			banks: 70,
-			csp: 68,
-			conelect: 61,
-			ccp: 63,
-			hp: 60,
-			hotels: 60,
-			inpro: 64,
-			invfirm: 60,
-			isps: 69,
-			retailers: 60,
-			wcs: 66
-		},
-		high: {
-			airlines: 70,
-			banks: 82,
-			csp: 77,
-			conelect: 69,
-			ccp: 77,
-			hp: 73,
-			hotels: 70,
-			inpro: 71,
-			invfirm: 71,
-			isps: 77,
-			retailers: 69,
-			wcs: 73
-		},
-	}
-};
-
-$.guiVars = {
-	customers  : {
-		slider: "#CustomersSlider",
-		label: "#lblCustomers",
-		value: 22
+	arrLawStaff : {
+		slider: "#lawstaff",
+		label: "#lblLawStaff",
+		value: 2
+	},
+	arrLawCost: {
+		slider: "#lawcost", 
+		label: "#lblLawCost", 
+		value: 150000
+	},
+	arrSuppStaff: {
+		slider: "#suppstaff", 
+		label: "#lblSuppStaff", 
+		value: 2
+	},
+	arrSuppCost: {
+		slider: "#suppcost", 
+		label: "#lblSuppCost", 
+		value: 60000
+	},
+	arrMonitoring : {
+		slider: "#monitoring", 
+		label: "#lblMonitoring", 
+		value: 0
+	},
+	arrUpdating : {
+		slider: "#updating", 
+		label: "#lblUpdating", 
+		value: 0
+	},
+	arrCounselAdvice : {
+		slider: "#counseladvice", 
+		label: "#lblCounselAdvice", 
+		value: 0
+	},
+	arrFlagGaps : {
+		slider: "#flaggaps", 
+		label: "#lblFlagGaps", 
+		value: 0
+	},
+	arrReviewing : {
+		slider: "#reviewing", 
+		label: "#lblReviewing", 
+		value: 0
+	},
+	arrPreparing : {
+		slider: "#preparing", 
+		label: "#lblPreparing", 
+		value: 0
+	},
+	arrCollecting : {
+		slider: "#collecting", 
+		label: "#lblCollecting", 
+		value: 0
+	},
+	arrFlagGapsCO : {
+		slider: "#flaggapsCO", 
+		label: "#lblFlagGapsCO", 
+		value: 0
+	},
+	arrDocumenting : {
+		slider: "#documenting", 
+		label: "#lblDocumenting", 
+		value: 0
+	},
+	arrFollowup : {
+		slider: "#followup", 
+		label: "#lblFollowUp", 
+		value: 0
+	},
+	arrTotalHours : {
+		slider: "#totalhours", 
+		label: "#lblTotalHours", 
+		value: 0
+	},
+	arrTotalCost: {
+		slider: "#totalcost", 
+		label: "#lblTotalCost", 
+		value: 0
+	},
+	arrTimeSaved: {
+		slider: "#timesaved", 
+		label: "#lblTimeSaved", 
+		value: 0
+	},
+	arrCostSaved: {
+		slider: "#costsaved", 
+		label: "#lblCostSaved", 
+		value: 0
 	}
 };
 			
 $(function(){
 
-	// Initialize the sliders
-	$('#CustomersSlider').slider ({
-		value: 22,
-		min: 1,
-		max: 100,
+	// Sets the initial value, minimum, maximum and step increment for all the sliders
+	$('.initialize').slider ({
+		value: 0,
+		min: 0,
+		max: 10,
 		step: 1
 	});
 
@@ -82,14 +134,14 @@ $(function(){
 	});
 				
 	// Sliders
-$('#CustomersSlider').slider({
+$('#monitoring').slider({
 		// Occurs when the user begins to move the slider
 		slide: function( event, ui ) {
-			SlideFunction($.guiVars.customers, ui);
+			SlideFunction($.roi.arrMonitoring, ui);
 		},
 		// Occurs when the slider stops moving
 		change: function( event, ui) {
-			SlideChange($.guiVars.customers, ui);
+			SlideChange($.roi.arrMonitoring, ui);
 		}
 	});
 
@@ -175,12 +227,12 @@ $('#followup').slider({
 	});
 
 // Activated when the slider moves. Updates the label for the slider.
-function SlideFunction(guiVars, ui) {
+function SlideFunction(arrSlider, ui) {
 	// There is a bug in some old browers that make this go negative. This fixes that.
 	if (ui.value == -1) {
 		ui.value = 0;
 		};
-	$(guiVars.label).val(ui.value + " Million" );
+	$(arrSlider.label).val(ui.value + " Hours" );
 };
 
 // Activated when the slider stops. Updates the value of the slider, and calls the function that calculates the output.

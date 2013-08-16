@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>jQuery UI Example Page</title>
+		<link type="text/css" href="/css/custom-theme/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="/js/roifunctions.js"></script>
+		<style type="text/css">
+			/*demo page css*/
+			body{ font: 62.5% "Trebuchet MS", sans-serif; margin: 50px;}
+			.demoHeaders { margin-top: 2em; }
+			#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
+			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+			ul#icons {margin: 0; padding: 0;}
+			ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+			ul#icons span.ui-icon {float: left; margin: 0 4px;}
+		</style>	
+	</head>
+	<body>
+
+		<!-- Dropdown Menus -->
+
+	<p><h3>Law Staff:</h3>
+		<select id="lawstaff">
+			<option value="1">1</option>
+			<option value="2" selected="selected">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+		</select>
+	</p>	
+
+	<p><h3>Law Cost:</h3>
+		<select id="lawcost">
+			<option value="80000">$80,000</option>
+			<option value="100000">$100,000</option>
+			<option value="120000">$120,000</option>
+			<option value="150000" selected="selected">$150,000</option>
+			<option value="175000">$175,000</option>
+			<option value="200000">$200,000</option>
+			<option value="250000">$250,000</option>
+			<option value="300000">$300,000</option>
+		</select>
+	</p>	
+	
+		<p><h3>Support Staff:</h3>
+		<select id="suppstaff">
+			<option value="1">1</option>
+			<option value="2" selected="selected">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+		</select>
+	</p>	
+	
+		<p><h3>Support Cost:</h3>
+		<select id="suppcost">
+			<option value="30000">$30,000</option>
+			<option value="40000">$40,000</option>
+			<option value="50000">$50,000</option>
+			<option value="60000" selected="selected">$60,000</option>
+			<option value="70000">$70,000</option>
+			<option value="80000">$80,000</option>
+		</select>
+	</p>	
+	
+		<!-- Sliders -->
+		
+		<p>
+			<h3>Monitoring:</h3><input type="text" id="lblMonitoring" readonly="readonly"  value="0 Hours" />
+		</p>
+		<div id="monitoring"  class="initialize"></div>
+		
+		<p>
+			<h3>Updating:</h3><input type="text" id="lblUpdating" readonly="readonly"  value="0 Hours" />
+		</p>
+		<div id="updating"  class="initialize"></div>
+		
+				<p>
+			<h3>Counsel advice:</h3><input type="text" id="lblCounselAdvice" readonly="readonly"  value="0 Hours" />
+		</p>
+		<div id="counseladvice"  class="initialize"></div>
+		
+		<p>
+			<h3>Flag Gaps:</h3><input type="text" id="lblFlagGaps" readonly="readonly"  value="0 Hours" />
+		</p>
+		<div id="flaggaps"  class="initialize"></div>
+		
+		<p>
+			<h3>Reviewing:</h3><input type="text" id="lblReviewing" readonly="readonly"  value="0 Hours" />
+		</p>
+		<div id="reviewing"  class="initialize"></div>
+		
+		<p>
+			<h3>Preparing:</h3><input type="text" id="lblPreparing" readonly="readonly"  value="0 Hours" />
+		</p>
+		<div id="preparing"  class="initialize"></div>
+		
+		<p>
+			<h3>Collecting:</h3><input type="text" id="lblCollecting" readonly="readonly"  value="0 Hours" />
+		</p>
+		<div id="collecting"  class="initialize"></div>
+		
+		<p>
+			<h3>Flag Gaps CO:</h3><input type="text" id="lblFlagGapsCO" readonly="readonly"  value="0 Hours" />
+		</p>
+		<div id="flaggapsCO"  class="initialize"></div>
+		
+		<p>
+			<h3>Documenting:</h3><input type="text" id="lblDocumenting" readonly="readonly"  value="0 Hours" />
+		</p>
+		<div id="documenting"  class="initialize"></div>
+		
+		<p>
+			<h3>Follow up:</h3><input type="text" id="lblFollowUp" readonly="readonly"  value="0 Hours" />
+		</p>
+		<div id="followup"  class="initialize"></div>
+		
+		<!-- Totals -->
+		<p>
+		<h3>Total Hours:</h3>
+		<input type="text" id="totalhours" readonly="readonly" value="0 Hours" />
+		</p>
+		
+		<p>
+		<h3>Total Cost:</h3>
+		<input type="text" id="totalcost" readonly="readonly" value="0 Hours" />
+		</p>
+		
+		<p>
+		<h3>Time Savings:</h3>
+		<input type="text" id="timesaved" readonly="readonly" value="0 Hours" />
+		</p>
+		
+		<p>
+		<h3>Cost Savings:</h3>
+		<input type="text" id="costsaved" readonly="readonly" value="0 Hours" />
+		</p>
+	</body>
+</html>
