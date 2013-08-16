@@ -183,7 +183,7 @@ $(function(){
 
 		// Displaying wallet share calculations
 		$($.fieldVars.wallet.laggards).text(iLaggardWallet + "%");
-		$($.fieldVars.wallet.leaders).val(iLeaderWallet + "%");
+		$($.fieldVars.wallet.leaders).text(iLeaderWallet + "%");
 		$($.fieldVars.wallet.diff).val(iDiffWallet + "%");
 		$($.fieldVars.wallet.newopps).val(iNewOppWallet);
 		$($.fieldVars.wallet.incrps).val(iIncRPSWallet);

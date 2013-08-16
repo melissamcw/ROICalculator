@@ -2,115 +2,101 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<title>jQuery UI Example Page</title>
+		<title>Testing Page for ROI Calculator</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link type="text/css" href="/css/custom-theme/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
-		<script type=text/javascript src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script type=text/javascript src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="/js/roifunctions.js"></script>
-		<style type="text/css">
-			/*demo page css*/
-			body{ font: sans-serif; margin: 50px;}
-			.demoHeaders { margin-top: 2em; }
-			#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
-			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
-			ul#icons {margin: 0; padding: 0;}
-			ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
-			ul#icons span.ui-icon {float: left; margin: 0 4px;}
-		</style>	
+		<link type="text/css" href="/css/bootstrap.min.css" rel="stylesheet" />
+		<link type="text/css" href="/css/bootstrap-responsive.min.css" rel="stylesheet" />
 	</head>
 	<body>
 
 		<!-- Dropdown Menus -->
-
-	<p><h3>Industry:</h3>
-		<select id="IndustryDropdown">
-			<option value="airlines" selected="selected">Airlines</option>
-			<option value="banks">Banks</option>
-			<option value="csp">Cable Service Providers</option>
-			<option value="conelect">Consumer Electronics</option>
-			<option value="ccp">Credit Card Providers</option>
-			<option value="hp">Health Plans</option>
-			<option value="hotels">Hotels</option>
-			<option value="inpro">Insurance Providers</option>
-			<option value="invfirm">Investment Firms</option>
-			<option value="isps">ISPs</option>
-			<option value="retailers">Retailers</option>
-			<option value="wcs">Wireless Carriers</option>
-		</select>
-	</p>
-
-	<p>
-		<h3>Total Customers (Millions):</h3><input type="text" id="lblCustomers" readonly="readonly"  value="22" />
-		</p>
-		<div id="CustomersSlider"></div>
-
-	<p>
-		<h3>Avg. Revenue Basic Customer:</h3><input type="text" id="lblRevBasic" readonly="readonly"  value="500" />
-		</p>
-		<div id="RevBasicSlider"  class="initialize"></div>
-
-	<p>
-		<h3>Avg. Revenue Enhanced Customer:</h3><input type="text" id="lblRevEnhan" readonly="readonly"  value="1000" />
-		</p>
-		<div id="RevEnhanSlider"  class="initialize"></div>
-
-	<p>
-		<h3>Avg. Cost per Call:</h3><input type="text" id="lblCostPerCall" readonly="readonly"  value="5.85" />
-		</p>
-		<div id="CostPerCallSlider"  class="initialize"></div>
-
-	<p>
-		<h3>Total Annual Call Volume (Millions):</h3><input type="text" id="lblCallVolume" readonly="readonly"  value="22" />
-		</p>
-		<div id="CallVolumeSlider"  class="initialize"></div>
-
-	<p>
-		<h3>Avg. Call Duration (Self-Service Assist in seconds):</h3><input type="text" id="lblCallDuration" readonly="readonly"  value="300" />
-		</p>
-		<div id="CallDurationSlider"  class="initialize"></div>
-
-		<br /><hr /><br />
-		<!-- Totals -->
-		<h2>Increase Share of Wallet - Repeat Purchase</h2>
-		<p>
-		<h3>Laggards:</h3>
-		According to the Temkin Group Q1 2012 Consumer Benchmark, customers of laggards in this industry have a willingness to repurchase of <strong><span id="WalletLaggards"></span></strong>
-		</p>
-		
-		<p>
-		<h3>Leaders:</h3>
-		<input type="text" id="WalletLeaders" readonly="readonly" value="" />
-		</p>
-		
-		<p>
-		<h3>Point Difference:</h3>
-		<input type="text" id="WalletDiff" readonly="readonly" value="" />
+	<div class="container">
+		<p><h4>Industry:</h4>
+			<select id="IndustryDropdown">
+				<option value="airlines" selected="selected">Airlines</option>
+				<option value="banks">Banks</option>
+				<option value="csp">Cable Service Providers</option>
+				<option value="conelect">Consumer Electronics</option>
+				<option value="ccp">Credit Card Providers</option>
+				<option value="hp">Health Plans</option>
+				<option value="hotels">Hotels</option>
+				<option value="inpro">Insurance Providers</option>
+				<option value="invfirm">Investment Firms</option>
+				<option value="isps">ISPs</option>
+				<option value="retailers">Retailers</option>
+				<option value="wcs">Wireless Carriers</option>
+			</select>
 		</p>
 
 		<p>
-		<h3>Closing the Gap By:</h3><input type="text" id="lblWalletGap" readonly="readonly"  value="50" />
-		</p>
-		<div id="WalletGapSlider"></div>
+			<h4>Total Customers (Millions):</h4><input type="text" id="lblCustomers" readonly="readonly"  value="22" />
+			</p>
+			<div id="CustomersSlider"></div>
 
 		<p>
-		<h3>Results in this many new sales opportunities:</h3>
-		<input type="text" id="WalletNewOpps" readonly="readonly" value="" />
-		</p>
+			<h4>Avg. Revenue Basic Customer:</h4><input type="text" id="lblRevBasic" readonly="readonly"  value="500" />
+			</p>
+			<div id="RevBasicSlider"  class="initialize"></div>
 
 		<p>
-		<h3>Of those new sales opportunities, this percent convert into a purchase:</h3><input type="text" id="lblWalletConvert" readonly="readonly"  value="30" />
-		</p>
-		<div id="WalletConvert"></div>
-		
-		<p>
-		<h3>Using an average increase revenue per sale of:</h3>
-		<input type="text" id="WalletIncRPS" readonly="readonly" value="" />
-		</p>
+			<h4>Avg. Revenue Enhanced Customer:</h4><input type="text" id="lblRevEnhan" readonly="readonly"  value="1000" />
+			</p>
+			<div id="RevEnhanSlider"  class="initialize"></div>
 
 		<p>
-		<h3>Results in a total revenue increase of:</h3>
-		<input type="text" id="WalletIncRev" readonly="readonly" value="" />
-		</p>
+			<h4>Avg. Cost per Call:</h4><input type="text" id="lblCostPerCall" readonly="readonly"  value="5.85" />
+			</p>
+			<div id="CostPerCallSlider"  class="initialize"></div>
 
+		<p>
+			<h4>Total Annual Call Volume (Millions):</h4><input type="text" id="lblCallVolume" readonly="readonly"  value="22" />
+			</p>
+			<div id="CallVolumeSlider"  class="initialize"></div>
+
+		<p>
+			<h4>Avg. Call Duration (Self-Service Assist in seconds):</h4><input type="text" id="lblCallDuration" readonly="readonly"  value="300" />
+			</p>
+			<div id="CallDurationSlider"  class="initialize"></div>
+
+			<!-- Totals -->
+			<h3>Increase Share of Wallet - Repeat Purchase</h3>
+			<p>According to the Temkin Group Q1 2012 Consumer Benchmark, customers of leaders in this industry have a willingness to repurchase of <strong><span id="WalletLeaders"></span></strong>, while customers of laggards only had <strong><span id="WalletLaggards"></span></strong>.
+			</p>
+			
+			<p>
+			<h4>Point Difference:</h4>
+			<input type="text" id="WalletDiff" readonly="readonly" value="" />
+			</p>
+
+			<p>
+			<h4>Closing the Gap By:</h4><input type="text" id="lblWalletGap" readonly="readonly"  value="50" />
+			</p>
+			<div id="WalletGapSlider"></div>
+
+			<p>
+			<h4>Results in this many new sales opportunities:</h4>
+			<input type="text" id="WalletNewOpps" readonly="readonly" value="" />
+			</p>
+
+			<p>
+			<h4>Of those new sales opportunities, this percent convert into a purchase:</h4><input type="text" id="lblWalletConvert" readonly="readonly"  value="30" />
+			</p>
+			<div id="WalletConvert"></div>
+			
+			<p>
+			<h4>Using an average increase revenue per sale of:</h4>
+			<input type="text" id="WalletIncRPS" readonly="readonly" value="" />
+			</p>
+
+			<p>
+			<h4>Results in a total revenue increase of:</h4>
+			<input type="text" id="WalletIncRev" readonly="readonly" value="" />
+			</p>
+		</div>
+		<script type=text/javascript src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type=text/javascript src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="/js/roifunctions.js"></script>
+		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	</body>
 </html>
