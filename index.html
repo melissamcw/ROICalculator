@@ -4,12 +4,12 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<title>jQuery UI Example Page</title>
 		<link type="text/css" href="/css/custom-theme/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script type=text/javascript src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type=text/javascript src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="/js/roifunctions.js"></script>
 		<style type="text/css">
 			/*demo page css*/
-			body{ font: 62.5% "Trebuchet MS", sans-serif; margin: 50px;}
+			body{ font: sans-serif; margin: 50px;}
 			.demoHeaders { margin-top: 2em; }
 			#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
 			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
@@ -74,7 +74,7 @@
 		<h2>Increase Share of Wallet - Repeat Purchase</h2>
 		<p>
 		<h3>Laggards:</h3>
-		<input type="text" id="WalletLaggards" readonly="readonly" value="" />
+		According to the Temkin Group Q1 2012 Consumer Benchmark, customers of laggards in this industry have a willingness to repurchase of <strong><span id="WalletLaggards"></span></strong>
 		</p>
 		
 		<p>
@@ -91,6 +91,26 @@
 		<h3>Closing the Gap By:</h3><input type="text" id="lblWalletGap" readonly="readonly"  value="50" />
 		</p>
 		<div id="WalletGapSlider"></div>
+
+		<p>
+		<h3>Results in this many new sales opportunities:</h3>
+		<input type="text" id="WalletNewOpps" readonly="readonly" value="" />
+		</p>
+
+		<p>
+		<h3>Of those new sales opportunities, this percent convert into a purchase:</h3><input type="text" id="lblWalletConvert" readonly="readonly"  value="30" />
+		</p>
+		<div id="WalletConvert"></div>
 		
+		<p>
+		<h3>Using an average increase revenue per sale of:</h3>
+		<input type="text" id="WalletIncRPS" readonly="readonly" value="" />
+		</p>
+
+		<p>
+		<h3>Results in a total revenue increase of:</h3>
+		<input type="text" id="WalletIncRev" readonly="readonly" value="" />
+		</p>
+
 	</body>
 </html>

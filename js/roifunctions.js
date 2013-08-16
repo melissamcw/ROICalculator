@@ -87,7 +87,7 @@ $.sliderVars = {
 		max: 300,
 		step: 1
 	},
-	callduration  : {
+	callduration : {
 		slider: "#CallDurationSlider",
 		label: "#lblCallDuration",
 		value: 300,
@@ -96,9 +96,17 @@ $.sliderVars = {
 		step: 10
 	},
 	walletclose : {
-		slider : "#WalletGapSlider",
-		label : "#lblWalletGap",
-		value : 50,
+		slider: "#WalletGapSlider",
+		label: "#lblWalletGap",
+		value: 50,
+		min: 0,
+		max: 100,
+		step: 5
+	},
+	walletconvert : {
+		slider: "#WalletConvert",
+		label: "#lblWalletConvert",
+		value: 30,
 		min: 0,
 		max: 100,
 		step: 5
@@ -106,10 +114,13 @@ $.sliderVars = {
 };
 
 $.fieldVars = {
-	wallet : {
-		laggards : "#WalletLaggards",
-		leaders : "#WalletLeaders",
-		diff : "#WalletDiff"
+	wallet: {
+		laggards: "#WalletLaggards",
+		leaders: "#WalletLeaders",
+		diff: "#WalletDiff",
+		newopps: "#WalletNewOpps",
+		incrps: "#WalletIncRPS",
+		increv: "#WalletIncRev"
 	}
 };
 			
@@ -160,14 +171,24 @@ $(function(){
 	// The formula used to calculate the output value when the slider is moved or a dropdown in changed.
 	function calcOutput() {
 	// Local variables to make it easier to break up the calculations. 
-		var iLaggardWallet, iLeaderWallet, iDiffWallet
+		var iLaggardWallet, iLeaderWallet, iDiffWallet, iNewOppWallet, iIncRPSWallet
 		
+		// Increasing Wallet-share Calculations
 		iLaggardWallet = $.industVar.wallet.low[$.dropdownVars.industry.value];
 		iLeaderWallet = $.industVar.wallet.high[$.dropdownVars.industry.value];
-		iDiffWallet = iLeaderWallet - iLaggardWallet
-		$($.fieldVars.wallet.laggards).val(iLaggardWallet + "%");
+		iDiffWallet = iLeaderWallet - iLaggardWallet;
+		iNewOppWallet = Math.floor(($.sliderVars.customers.value * 1000000) * ($.sliderVars.walletclose.value / 100) * (iDiffWallet / 100));
+		iIncRPSWallet = $.sliderVars.revenhan.value - $.sliderVars.revbasic.value;
+		iIncRev = iNewOppWallet * ($.sliderVars.walletconvert.value / 100) * iIncRPSWallet
+
+		// Displaying wallet share calculations
+		$($.fieldVars.wallet.laggards).text(iLaggardWallet + "%");
 		$($.fieldVars.wallet.leaders).val(iLeaderWallet + "%");
 		$($.fieldVars.wallet.diff).val(iDiffWallet + "%");
+		$($.fieldVars.wallet.newopps).val(iNewOppWallet);
+		$($.fieldVars.wallet.incrps).val(iIncRPSWallet);
+		$($.fieldVars.wallet.increv).val(iIncRev);
+
 	};
 	
 	// Prints the output to the screen on the page load
