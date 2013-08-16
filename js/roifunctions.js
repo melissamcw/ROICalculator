@@ -184,7 +184,7 @@ $(function(){
 		// Displaying wallet share calculations
 		$($.fieldVars.wallet.laggards).text(iLaggardWallet + "%");
 		$($.fieldVars.wallet.leaders).text(iLeaderWallet + "%");
-		$($.fieldVars.wallet.diff).val(iDiffWallet + "%");
+		$($.fieldVars.wallet.diff).text(iDiffWallet);
 		$($.fieldVars.wallet.newopps).val(iNewOppWallet);
 		$($.fieldVars.wallet.incrps).val(iIncRPSWallet);
 		$($.fieldVars.wallet.increv).val(iIncRev);
