@@ -143,6 +143,7 @@ $(function(){
 			max: sliderObject.max,
 			step: sliderObject.step
 		});
+		$(sliderObject.label + ">span").text(sliderObject.value);
 	});
 	
 	// The first line ensures that the code executes when their value is changed.
@@ -158,7 +159,7 @@ $(function(){
 		if (ui.value == -1) {
 			ui.value = 0;
 			};
-		$(guiItem.label).val(ui.value);
+		$(guiItem.label + ">span").text(ui.value);
 	};
 
 	// Activated when the slider stops. Updates the value of the slider, and calls the function that calculates the output.
