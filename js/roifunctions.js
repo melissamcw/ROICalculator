@@ -50,37 +50,58 @@ $.sliderVars = {
 	customers  : {
 		slider: "#CustomersSlider",
 		label: "#lblCustomers",
-		value: 22
+		value: 22,
+		min: 1,
+		max: 100,
+		step: 1
 	},
 	revbasic  : {
 		slider: "#RevBasicSlider",
 		label: "#lblRevBasic",
-		value: 500
+		value: 500,
+		min: 10,
+		max: 5000,
+		step: 10
 	},
 	revenhan  : {
 		slider: "#RevEnhanSlider",
 		label: "#lblRevEnhan",
-		value: 1000
+		value: 1000,
+		min: 10,
+		max: 5000,
+		step: 10
 	},
 	costpercall  : {
 		slider: "#CostPerCallSlider",
 		label: "#lblCostPerCall",
-		value: 5.85
+		value: 5.85,
+		min: 0.1,
+		max: 20.0,
+		step: 0.1
 	},
 	callvolume  : {
 		slider: "#CallVolumeSlider",
 		label: "#lblCallVolume",
-		value: 22
+		value: 22,
+		min: 1,
+		max: 300,
+		step: 1
 	},
 	callduration  : {
 		slider: "#CallDurationSlider",
 		label: "#lblCallDuration",
-		value: 300
+		value: 300,
+		min: 10,
+		max: 1000,
+		step: 10
 	},
 	walletclose : {
 		slider : "#WalletGapSlider",
 		label : "#lblWalletGap",
-		value : 50
+		value : 50,
+		min: 0,
+		max: 100,
+		step: 5
 	}
 };
 
@@ -95,53 +116,22 @@ $.fieldVars = {
 $(function(){
 
 	// Initialize the sliders
-	$('#CustomersSlider').slider ({
-		value: 22,
-		min: 1,
-		max: 100,
-		step: 1
-	});
-
-	$('#RevBasicSlider').slider ({
-		value: 500,
-		min: 10,
-		max: 5000,
-		step: 10
-	});
-
-	$('#RevEnhanSlider').slider ({
-		value: 1000,
-		min: 10,
-		max: 5000,
-		step: 10
-	});
-
-	$('#CostPerCallSlider').slider ({
-		value: 5.85,
-		min: 0.1,
-		max: 20.0,
-		step: 0.1
-	});
-
-	$('#CallVolumeSlider').slider ({
-		value: 22,
-		min: 1,
-		max: 300,
-		step: 1
-	});
-
-	$('#CallDurationSlider').slider ({
-		value: 300,
-		min: 10,
-		max: 1000,
-		step: 10
-	});
-
-	$('#WalletGapSlider').slider ({
-		value: 50,
-		min: 0,
-		max: 100,
-		step: 5
+	$.each($.sliderVars, function(key, sliderObject) {
+		$(sliderObject.slider).slider({
+			// Occurs when the user begins to move the slider
+			slide: function( event, ui ) {
+			SlideFunction(sliderObject, ui);
+			},
+			// Occurs when the slider stops moving
+			change: function( event, ui) {
+			SlideChange(sliderObject, ui);
+			},
+			// Initializes the slider values
+			value: sliderObject.value,
+			min: sliderObject.min,
+			max: sliderObject.max,
+			step: sliderObject.step
+		});
 	});
 	
 	// The first line ensures that the code executes when their value is changed.
@@ -150,20 +140,6 @@ $(function(){
 		calcOutput(); //Calls the function to update the totals
 	});
 	
-				
-	// Tells what to do every time a slider moves or changes.
-	$.each($.sliderVars, function(key, value) {
-		$(value.slider).slider({
-			// Occurs when the user begins to move the slider
-			slide: function( event, ui ) {
-			SlideFunction(value, ui);
-			},
-			// Occurs when the slider stops moving
-			change: function( event, ui) {
-			SlideChange(value, ui);
-			}
-		});
-	});
 
 	// Activated when the slider moves. Updates the label for the slider.
 	function SlideFunction(guiItem, ui) {
