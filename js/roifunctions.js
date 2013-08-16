@@ -43,7 +43,10 @@ $.industVar = {
 $.dropdownVars = {
 	industry  : {
 		value: "airlines"
-	}
+	},
+	walletclose : {
+		value: 50
+	},
 };
 
 $.sliderVars = {
@@ -95,14 +98,6 @@ $.sliderVars = {
 		max: 1000,
 		step: 10
 	},
-	walletclose : {
-		slider: "#WalletGapSlider",
-		label: "#lblWalletGap",
-		value: 50,
-		min: 0,
-		max: 100,
-		step: 5
-	},
 	walletconvert : {
 		slider: "#WalletConvert",
 		label: "#lblWalletConvert",
@@ -151,6 +146,11 @@ $(function(){
 		$.dropdownVars.industry.value = $(this).val(); //Updates the value element of the appropriate array above.
 		calcOutput(); //Calls the function to update the totals
 	});
+
+	$("#WalletGapDropdown").change(function () {
+		$.dropdownVars.walletclose.value = $(this).val(); //Updates the value element of the appropriate array above.
+		calcOutput(); //Calls the function to update the totals
+	});
 	
 
 	// Activated when the slider moves. Updates the label for the slider.
@@ -178,7 +178,7 @@ $(function(){
 		iLaggardWallet = $.industVar.wallet.low[$.dropdownVars.industry.value];
 		iLeaderWallet = $.industVar.wallet.high[$.dropdownVars.industry.value];
 		iDiffWallet = iLeaderWallet - iLaggardWallet;
-		iNewOppWallet = Math.floor(($.sliderVars.customers.value * 1000000) * ($.sliderVars.walletclose.value / 100) * (iDiffWallet / 100));
+		iNewOppWallet = Math.floor(($.sliderVars.customers.value * 1000000) * ($.dropdownVars.walletclose.value / 100) * (iDiffWallet / 100));
 		iIncRPSWallet = $.sliderVars.revenhan.value - $.sliderVars.revbasic.value;
 		iIncRev = iNewOppWallet * ($.sliderVars.walletconvert.value / 100) * iIncRPSWallet
 
@@ -186,7 +186,7 @@ $(function(){
 		$($.fieldVars.wallet.laggards).text(iLaggardWallet + "%");
 		$($.fieldVars.wallet.leaders).text(iLeaderWallet + "%");
 		$($.fieldVars.wallet.diff).text(iDiffWallet);
-		$($.fieldVars.wallet.newopps).val(iNewOppWallet);
+		$($.fieldVars.wallet.newopps).text(iNewOppWallet);
 		$($.fieldVars.wallet.incrps).val(iIncRPSWallet);
 		$($.fieldVars.wallet.increv).val(iIncRev);
 
