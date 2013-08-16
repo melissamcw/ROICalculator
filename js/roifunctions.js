@@ -45,6 +45,31 @@ $.guiVars = {
 		slider: "#CustomersSlider",
 		label: "#lblCustomers",
 		value: 22
+	},
+	revbasic  : {
+		slider: "#RevBasicSlider",
+		label: "#lblRevBasic",
+		value: 500
+	},
+	revenhan  : {
+		slider: "#RevEnhanSlider",
+		label: "#lblRevEnhan",
+		value: 1000
+	},
+	costpercall  : {
+		slider: "#CostPerCallSlider",
+		label: "#lblCostPerCall",
+		value: 5.85
+	},
+	callvolume  : {
+		slider: "#CallVolumeSlider",
+		label: "#lblCallVolume",
+		value: 22
+	},
+	callduration  : {
+		slider: "#CallDurationSlider",
+		label: "#lblCallDuration",
+		value: 300
 	}
 };
 			
@@ -56,6 +81,41 @@ $(function(){
 		min: 1,
 		max: 100,
 		step: 1
+	});
+
+	$('#RevBasicSlider').slider ({
+		value: 500,
+		min: 10,
+		max: 5000,
+		step: 10
+	});
+
+	$('#RevEnhanSlider').slider ({
+		value: 1000,
+		min: 10,
+		max: 5000,
+		step: 10
+	});
+
+	$('#CostPerCallSlider').slider ({
+		value: 5.85,
+		min: 0.1,
+		max: 20.0,
+		step: 0.1
+	});
+
+	$('#CallVolumeSlider').slider ({
+		value: 22,
+		min: 1,
+		max: 300,
+		step: 1
+	});
+
+	$('#CallDurationSlider').slider ({
+		value: 300,
+		min: 10,
+		max: 1000,
+		step: 10
 	});
 
 	// Dropdown menus
@@ -82,7 +142,7 @@ $(function(){
 	});
 				
 	// Sliders
-$('#CustomersSlider').slider({
+	$('#CustomersSlider').slider({
 		// Occurs when the user begins to move the slider
 		slide: function( event, ui ) {
 			SlideFunction($.guiVars.customers, ui);
@@ -93,84 +153,58 @@ $('#CustomersSlider').slider({
 		}
 	});
 
-$('#updating').slider({
+	$('#RevBasicSlider').slider({
+		// Occurs when the user begins to move the slider
 		slide: function( event, ui ) {
-			SlideFunction($.roi.arrUpdating, ui);
+			SlideFunction($.guiVars.revbasic, ui);
 		},
+		// Occurs when the slider stops moving
 		change: function( event, ui) {
-			SlideChange($.roi.arrUpdating, ui);
+			SlideChange($.guiVars.revbasic, ui);
 		}
 	});
-	
-$('#counseladvice').slider({
+
+	$('#RevEnhanSlider').slider({
+		// Occurs when the user begins to move the slider
 		slide: function( event, ui ) {
-			SlideFunction($.roi.arrCounselAdvice, ui);
+			SlideFunction($.guiVars.revenhan, ui);
 		},
+		// Occurs when the slider stops moving
 		change: function( event, ui) {
-			SlideChange($.roi.arrCounselAdvice, ui);
+			SlideChange($.guiVars.revenhan, ui);
 		}
 	});
-	
-$('#flaggaps').slider({
+
+	$('#CostPerCallSlider').slider({
+		// Occurs when the user begins to move the slider
 		slide: function( event, ui ) {
-			SlideFunction($.roi.arrFlagGaps, ui);
+			SlideFunction($.guiVars.costpercall, ui);
 		},
+		// Occurs when the slider stops moving
 		change: function( event, ui) {
-			SlideChange($.roi.arrFlagGaps, ui);
+			SlideChange($.guiVars.costpercall, ui);
 		}
 	});
-	
-$('#reviewing').slider({
+
+	$('#CallVolumeSlider').slider({
+		// Occurs when the user begins to move the slider
 		slide: function( event, ui ) {
-			SlideFunction($.roi.arrReviewing, ui);
+			SlideFunction($.guiVars.callvolume, ui);
 		},
+		// Occurs when the slider stops moving
 		change: function( event, ui) {
-			SlideChange($.roi.arrReviewing, ui);
+			SlideChange($.guiVars.callvolume, ui);
 		}
 	});
-	
-$('#preparing').slider({
+
+	$('#CallDurationSlider').slider({
+		// Occurs when the user begins to move the slider
 		slide: function( event, ui ) {
-			SlideFunction($.roi.arrPreparing, ui);
+			SlideFunction($.guiVars.callduration, ui);
 		},
+		// Occurs when the slider stops moving
 		change: function( event, ui) {
-			SlideChange($.roi.arrPreparing, ui);
-		}
-	});
-	
-$('#collecting').slider({
-		slide: function( event, ui ) {
-			SlideFunction($.roi.arrCollecting, ui);
-		},
-		change: function( event, ui) {
-			SlideChange($.roi.arrCollecting, ui);
-		}
-	});
-	
-$('#flaggapsCO').slider({
-		slide: function( event, ui ) {
-			SlideFunction($.roi.arrFlagGapsCO, ui);
-		},
-		change: function( event, ui) {
-			SlideChange($.roi.arrFlagGapsCO, ui);
-		}
-	});
-	
-$('#documenting').slider({
-		slide: function( event, ui ) {
-			SlideFunction($.roi.arrDocumenting, ui);
-		},
-		change: function( event, ui) {
-			SlideChange($.roi.arrDocumenting, ui);
-		}
-	});
-	
-$('#followup').slider({
-		slide: function( event, ui ) {
-			SlideFunction($.roi.arrFollowup, ui);
-		},
-		change: function( event, ui) {
-			SlideChange($.roi.arrFollowup, ui);
+			SlideChange($.guiVars.callduration, ui);
 		}
 	});
 
@@ -180,7 +214,7 @@ function SlideFunction(guiVars, ui) {
 	if (ui.value == -1) {
 		ui.value = 0;
 		};
-	$(guiVars.label).val(ui.value + " Million" );
+	$(guiVars.label).val(ui.value);
 };
 
 // Activated when the slider stops. Updates the value of the slider, and calls the function that calculates the output.
