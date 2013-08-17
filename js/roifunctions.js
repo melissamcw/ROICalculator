@@ -147,11 +147,13 @@ $(function(){
 		$(sliderObject.label + ">span").text(numberWithCommas(sliderObject.value));
 	});
 	
+	// Governs what happens when a dropdown is changed
 	$.each($.dropdownVars, function(key, dropdownObject) {
 		$(dropdownObject.dropdown).change(function() {
 			dropdownObject.value = $(this).val();
 			calcOutput();
 		});
+		$(dropdownObject.dropdown).val(dropdownObject.value)
 	});
 
 	// Activated when the slider moves. Updates the label for the slider.
