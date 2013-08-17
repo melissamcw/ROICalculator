@@ -141,7 +141,7 @@ $(function(){
 			max: sliderObject.max,
 			step: sliderObject.step
 		});
-		$(sliderObject.label + ">span").text(sliderObject.value);
+		$(sliderObject.label + ">span").text(numberWithCommas(sliderObject.value));
 	});
 	
 	// The first line ensures that the code executes when their value is changed.
@@ -167,7 +167,7 @@ $(function(){
 		if (ui.value == -1) {
 			ui.value = 0;
 			};
-		$(guiItem.label + ">span").text(ui.value);
+		$(guiItem.label + ">span").text(numberWithCommas(ui.value));
 	};
 
 	// Activated when the slider stops. Updates the value of the slider, and calls the function that calculates the output.
@@ -180,7 +180,7 @@ $(function(){
 	// The formula used to calculate the output value when the slider is moved or a dropdown in changed.
 	function calcOutput() {
 	// Local variables to make it easier to break up the calculations. 
-		var iLaggardWallet, iLeaderWallet, iDiffWallet, iNewOppWallet, iIncRPSWallet
+		var iLaggardWallet, iLeaderWallet, iDiffWallet, iNewOppWallet, sNewOppWallet, iIncRPSWallet, sIncRPSWallet, iIncRev, sIncRev
 		
 		// Increasing Wallet-share Calculations
 		iLaggardWallet = $.industVar.wallet.low[$.dropdownVars.industry.value];
@@ -190,15 +190,24 @@ $(function(){
 		iIncRPSWallet = $.sliderVars.revenhan.value - $.sliderVars.revbasic.value;
 		iIncRev = iNewOppWallet * ($.dropdownVars.walletconvert.value / 100) * iIncRPSWallet
 
+		// Convert to numbers with commas
+		sNewOppWallet = numberWithCommas(iNewOppWallet);
+		sIncRPSWallet = numberWithCommas(iIncRPSWallet);
+		sIncRev = numberWithCommas(iIncRev);
+
 		// Displaying wallet share calculations
 		$($.fieldVars.wallet.laggards).text(iLaggardWallet + "%");
 		$($.fieldVars.wallet.leaders).text(iLeaderWallet + "%");
 		$($.fieldVars.wallet.diff).text(iDiffWallet);
-		$($.fieldVars.wallet.newopps).text(iNewOppWallet);
-		$($.fieldVars.wallet.incrps).text(iIncRPSWallet);
-		$($.fieldVars.wallet.increv).text(iIncRev);
+		$($.fieldVars.wallet.newopps).text(sNewOppWallet);
+		$($.fieldVars.wallet.incrps).text(sIncRPSWallet);
+		$($.fieldVars.wallet.increv).text(sIncRev);
 
 	};
+
+	function numberWithCommas(x) {
+    	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 	
 	// Prints the output to the screen on the page load
 	calcOutput();
