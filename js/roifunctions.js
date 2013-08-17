@@ -42,13 +42,16 @@ $.industVar = {
 
 $.dropdownVars = {
 	industry  : {
-		value: "airlines"
+		value: "airlines",
+		dropdown: "#IndustryDropdown"
 	},
 	walletclose : {
-		value: 50
+		value: 50,
+		dropdown: "#WalletGapDropdown"
 	},
 	walletconvert : {
-		value: 30
+		value: 30,
+		dropdown: "#WalletCloseRate"
 	}
 };
 
@@ -144,22 +147,12 @@ $(function(){
 		$(sliderObject.label + ">span").text(numberWithCommas(sliderObject.value));
 	});
 	
-	// The first line ensures that the code executes when their value is changed.
-	$("#IndustryDropdown").change(function () {
-		$.dropdownVars.industry.value = $(this).val(); //Updates the value element of the appropriate array above.
-		calcOutput(); //Calls the function to update the totals
+	$.each($.dropdownVars, function(key, dropdownObject) {
+		$(dropdownObject.dropdown).change(function() {
+			dropdownObject.value = $(this).val();
+			calcOutput();
+		});
 	});
-
-	$("#WalletGapDropdown").change(function () {
-		$.dropdownVars.walletclose.value = $(this).val(); //Updates the value element of the appropriate array above.
-		calcOutput(); //Calls the function to update the totals
-	});
-
-	$("#WalletCloseRate").change(function () {
-		$.dropdownVars.walletclose.value = $(this).val(); //Updates the value element of the appropriate array above.
-		calcOutput(); //Calls the function to update the totals
-	});
-	
 
 	// Activated when the slider moves. Updates the label for the slider.
 	function SlideFunction(guiItem, ui) {
