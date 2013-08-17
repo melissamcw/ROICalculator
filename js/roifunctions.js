@@ -47,6 +47,9 @@ $.dropdownVars = {
 	walletclose : {
 		value: 50
 	},
+	walletconvert : {
+		value: 30
+	}
 };
 
 $.sliderVars = {
@@ -151,6 +154,11 @@ $(function(){
 		$.dropdownVars.walletclose.value = $(this).val(); //Updates the value element of the appropriate array above.
 		calcOutput(); //Calls the function to update the totals
 	});
+
+	$("#WalletCloseRate").change(function () {
+		$.dropdownVars.walletclose.value = $(this).val(); //Updates the value element of the appropriate array above.
+		calcOutput(); //Calls the function to update the totals
+	});
 	
 
 	// Activated when the slider moves. Updates the label for the slider.
@@ -180,15 +188,15 @@ $(function(){
 		iDiffWallet = iLeaderWallet - iLaggardWallet;
 		iNewOppWallet = Math.floor(($.sliderVars.customers.value * 1000000) * ($.dropdownVars.walletclose.value / 100) * (iDiffWallet / 100));
 		iIncRPSWallet = $.sliderVars.revenhan.value - $.sliderVars.revbasic.value;
-		iIncRev = iNewOppWallet * ($.sliderVars.walletconvert.value / 100) * iIncRPSWallet
+		iIncRev = iNewOppWallet * ($.dropdownVars.walletconvert.value / 100) * iIncRPSWallet
 
 		// Displaying wallet share calculations
 		$($.fieldVars.wallet.laggards).text(iLaggardWallet + "%");
 		$($.fieldVars.wallet.leaders).text(iLeaderWallet + "%");
 		$($.fieldVars.wallet.diff).text(iDiffWallet);
 		$($.fieldVars.wallet.newopps).text(iNewOppWallet);
-		$($.fieldVars.wallet.incrps).val(iIncRPSWallet);
-		$($.fieldVars.wallet.increv).val(iIncRev);
+		$($.fieldVars.wallet.incrps).text(iIncRPSWallet);
+		$($.fieldVars.wallet.increv).text(iIncRev);
 
 	};
 	
