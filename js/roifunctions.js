@@ -183,30 +183,6 @@ $.sliderVars = {
 		min: 10,
 		max: 5000,
 		step: 10
-	},
-	costpercall  : {
-		slider: "#CostPerCallSlider",
-		label: "#lblCostPerCall",
-		value: 5.85,
-		min: 0.1,
-		max: 20.0,
-		step: 0.1
-	},
-	callvolume  : {
-		slider: "#CallVolumeSlider",
-		label: "#lblCallVolume",
-		value: 22,
-		min: 1,
-		max: 300,
-		step: 1
-	},
-	callduration : {
-		slider: "#CallDurationSlider",
-		label: "#lblCallDuration",
-		value: 300,
-		min: 10,
-		max: 1000,
-		step: 10
 	}
 };
 
