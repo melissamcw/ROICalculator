@@ -68,7 +68,7 @@ $.industVar = {
 			wcs: 29
 		}
 	},
-	churn : {
+	rec : {
 		low : {
 			airlines: 50,
 			banks: 61,
@@ -217,7 +217,8 @@ $.fieldVars = {
 		diff: "#WalletDiff",
 		newopps: "#WalletNewOpps",
 		incrps: "#WalletIncRPS",
-		increv: "#WalletIncRev"
+		increv: "#WalletIncRev",
+		rpc: "#RPCWallet"
 	},
 	churn: {
 		laggards: "#ChurnLaggards",
@@ -225,7 +226,8 @@ $.fieldVars = {
 		diff: "#ChurnDiff",
 		churnre: "#ChurnReconsider",
 		incrps: "#ChurnIncRPS",
-		increv: "#ChurnIncRev"
+		increv: "#ChurnIncRev",
+		rpc: "#RPCChurn"
 	},
 	rec: {
 		laggards: "#RecLaggards",
@@ -234,8 +236,10 @@ $.fieldVars = {
 		newrecs: "#NewRecs",
 		peopletold: "#PeopleTold",
 		dorec: "#DoRecommend",
+		totalrecs: "#NewRecommendations",
 		incrps: "#RecIncRPS",
-		increv: "#RecIncRev"
+		increv: "#RecIncRev",
+		rpc: "#RPCRec"
 	}
 };
 			
@@ -288,7 +292,7 @@ $(function(){
 
 	// The formula used to calculate the output value when the slider is moved or a dropdown in changed.
 	function calcOutput() { 
-		var iLaggardWallet, iLeaderWallet, iDiffWallet, iNewOppWallet, iIncRPS, iIncRevWallet, iLaggardChurn, iLeaderChurn, iDiffChurn, iChurnReconsider, iRevBenChurn
+		var iIncRPS, iLaggardWallet, iLeaderWallet, iDiffWallet, iNewOppWallet, iIncRevWallet, fRPCWallet, iLaggardChurn, iLeaderChurn, iDiffChurn, iChurnReconsider, iRevBenChurn, fRPCChurn, iLaggardRec, iLeaderRec, iRecs, iDoRecommend, fPeopleTold, iTotalRecs, iRevBenRec, fRPCRec
 		
 		// Variables used for multiple calculations
 		iIncRPS = $.sliderVars.revenhan.value - $.sliderVars.revbasic.value;
@@ -299,6 +303,9 @@ $(function(){
 		iDiffWallet = iLeaderWallet - iLaggardWallet;
 		iNewOppWallet = Math.floor(($.sliderVars.customers.value * 1000000) * ($.dropdownVars.walletgap.value / 100) * (iDiffWallet / 100));
 		iIncRevWallet = iNewOppWallet * ($.dropdownVars.walletconvert.value / 100) * iIncRPS;
+		fRPCWallet = iIncRevWallet / ($.sliderVars.customers.value * 1000000)
+		// Round to two decimal places
+		fRPCWallet = Math.round(fRPCWallet*100)/100
 
 		// Displaying wallet share calculations
 		$($.fieldVars.wallet.laggards).text(iLaggardWallet + "%");
@@ -307,6 +314,7 @@ $(function(){
 		$($.fieldVars.wallet.newopps).text(numberWithCommas(iNewOppWallet));
 		$($.fieldVars.wallet.incrps).text(numberWithCommas(iIncRPS));
 		$($.fieldVars.wallet.increv).text(numberWithCommas(iIncRevWallet));
+		$($.fieldVars.wallet.rpc).text(fRPCWallet);
 
 		// Reducing customer churn calculations
 		iLaggardChurn = $.industVar.churn.low[$.dropdownVars.industry.value];
@@ -314,6 +322,9 @@ $(function(){
 		iDiffChurn = -1*(iLeaderChurn - iLaggardChurn);
 		iChurnReconsider = Math.floor(($.sliderVars.customers.value * 1000000) * ($.dropdownVars.churngap.value / 100) * (iDiffChurn / 100));
 		iRevBenChurn = iChurnReconsider * ($.dropdownVars.churnre.value / 100) * iIncRPS;
+		fRPCChurn = iRevBenChurn / ($.sliderVars.customers.value * 1000000)
+		// Round to two decimal places
+		fRPCChurn = Math.round(fRPCChurn*100)/100
 
 		// Displaying customer churn calculations
 		$($.fieldVars.churn.laggards).text(iLaggardChurn + "%");
@@ -322,6 +333,33 @@ $(function(){
 		$($.fieldVars.churn.churnre).text(numberWithCommas(iChurnReconsider));
 		$($.fieldVars.churn.incrps).text(numberWithCommas(iIncRPS));
 		$($.fieldVars.churn.increv).text(numberWithCommas(iRevBenChurn));
+		$($.fieldVars.churn.rpc).text(fRPCChurn);
+
+		// Increased word of mouth calculations
+		iLaggardRec = $.industVar.rec.low[$.dropdownVars.industry.value];
+		iLeaderRec = $.industVar.rec.high[$.dropdownVars.industry.value];
+		iDiffRec = (iLeaderRec - iLaggardRec);
+		iRecs = Math.floor(($.sliderVars.customers.value * 1000000) * ($.dropdownVars.recgap.value / 100) * (iDiffRec / 100));
+		iDoRecommend = $.industVar.rec.dorecommend[$.dropdownVars.industry.value];
+		fPeopleTold = $.industVar.rec.peopletold[$.dropdownVars.industry.value];
+		iTotalRecs = Math.floor(iRecs * (iDoRecommend / 100) * fPeopleTold);
+		iRevBenRec = iTotalRecs * ($.dropdownVars.recconvert.value / 100) * iIncRPS;
+		fRPCRec = iRevBenRec / ($.sliderVars.customers.value * 1000000)
+		// Round to two decimal places
+		fRPCRec = Math.round(fRPCRec*100)/100
+
+
+		// Displaying word of mouth calculations
+		$($.fieldVars.rec.laggards).text(iLaggardRec + "%");
+		$($.fieldVars.rec.leaders).text(iLeaderRec + "%");
+		$($.fieldVars.rec.diff).text(iDiffRec);
+		$($.fieldVars.rec.newrecs).text(numberWithCommas(iRecs));
+		$($.fieldVars.rec.dorec).text(iDoRecommend + "%");
+		$($.fieldVars.rec.peopletold).text(fPeopleTold);
+		$($.fieldVars.rec.totalrecs).text(numberWithCommas(iTotalRecs));
+		$($.fieldVars.rec.incrps).text(numberWithCommas(iIncRPS));
+		$($.fieldVars.rec.increv).text(numberWithCommas(iRevBenRec));
+		$($.fieldVars.rec.rpc).text(fRPCRec);
 
 	};
 

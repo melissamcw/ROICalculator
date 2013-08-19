@@ -3,6 +3,17 @@
 	padding-bottom: 10px;
 	font-size: 1.4em;
 }
+
+.revpercust {
+	font-size:1.7em;
+	font-style:italic;
+	margin-top:15px;
+}
+
+p {
+	font-size:1.3em;
+}
+
 select {
 	margin-bottom: 0;
 }
