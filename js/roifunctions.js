@@ -36,6 +36,36 @@ $.industVar = {
 			isps: 77,
 			retailers: 69,
 			wcs: 73
+		},
+	},
+	churn : {
+		low : {
+			airlines: 24,
+			banks: 44,
+			csp: 36,
+			conelect: 26,
+			ccp: 39,
+			hp: 32,
+			hotels: 24,
+			inpro: 42,
+			invfirm: 33,
+			isps: 37,
+			retailers: 40,
+			wcs: 35
+		},
+		high : {
+			airlines: 19,
+			banks: 38,
+			csp: 30,
+			conelect: 17,
+			ccp: 33,
+			hp: 19,
+			hotels: 19,
+			inpro: 32,
+			invfirm: 20,
+			isps: 29,
+			retailers: 29,
+			wcs: 29
 		}
 	}
 };
@@ -52,6 +82,14 @@ $.dropdownVars = {
 	walletconvert : {
 		value: 30,
 		dropdown: "#WalletCloseRate"
+	},
+	churnclose : {
+		value: 50,
+		dropdown: "#ChurnGapDropdown"
+	},
+	churnre : {
+		value: 50,
+		dropdown: "#ChurnLoyalDropdown"
 	}
 };
 
@@ -103,14 +141,6 @@ $.sliderVars = {
 		min: 10,
 		max: 1000,
 		step: 10
-	},
-	walletconvert : {
-		slider: "#WalletConvert",
-		label: "#lblWalletConvert",
-		value: 30,
-		min: 0,
-		max: 100,
-		step: 5
 	}
 };
 
@@ -122,6 +152,14 @@ $.fieldVars = {
 		newopps: "#WalletNewOpps",
 		incrps: "#WalletIncRPS",
 		increv: "#WalletIncRev"
+	},
+	churn: {
+		laggards: "#ChurnLaggards",
+		leaders: "#ChurnLeaders",
+		diff: "#ChurnDiff",
+		churnre: "#ChurnReconsider",
+		incrps: "#ChurnIncRPS",
+		increv: "#ChurnIncRev"
 	}
 };
 			
@@ -173,30 +211,41 @@ $(function(){
 	};
 
 	// The formula used to calculate the output value when the slider is moved or a dropdown in changed.
-	function calcOutput() {
-	// Local variables to make it easier to break up the calculations. 
-		var iLaggardWallet, iLeaderWallet, iDiffWallet, iNewOppWallet, sNewOppWallet, iIncRPSWallet, sIncRPSWallet, iIncRev, sIncRev
+	function calcOutput() { 
+		var iLaggardWallet, iLeaderWallet, iDiffWallet, iNewOppWallet, iIncRPS, iIncRevWallet, iLaggardChurn, iLeaderChurn, iDiffChurn, iChurnReconsider, iRevBenChurn
 		
+		// Variables used for multiple calculations
+		iIncRPS = $.sliderVars.revenhan.value - $.sliderVars.revbasic.value;
+
 		// Increasing Wallet-share Calculations
 		iLaggardWallet = $.industVar.wallet.low[$.dropdownVars.industry.value];
 		iLeaderWallet = $.industVar.wallet.high[$.dropdownVars.industry.value];
 		iDiffWallet = iLeaderWallet - iLaggardWallet;
 		iNewOppWallet = Math.floor(($.sliderVars.customers.value * 1000000) * ($.dropdownVars.walletclose.value / 100) * (iDiffWallet / 100));
-		iIncRPSWallet = $.sliderVars.revenhan.value - $.sliderVars.revbasic.value;
-		iIncRev = iNewOppWallet * ($.dropdownVars.walletconvert.value / 100) * iIncRPSWallet
-
-		// Convert to numbers with commas
-		sNewOppWallet = numberWithCommas(iNewOppWallet);
-		sIncRPSWallet = numberWithCommas(iIncRPSWallet);
-		sIncRev = numberWithCommas(iIncRev);
+		iIncRevWallet = iNewOppWallet * ($.dropdownVars.walletconvert.value / 100) * iIncRPS;
 
 		// Displaying wallet share calculations
 		$($.fieldVars.wallet.laggards).text(iLaggardWallet + "%");
 		$($.fieldVars.wallet.leaders).text(iLeaderWallet + "%");
 		$($.fieldVars.wallet.diff).text(iDiffWallet);
-		$($.fieldVars.wallet.newopps).text(sNewOppWallet);
-		$($.fieldVars.wallet.incrps).text(sIncRPSWallet);
-		$($.fieldVars.wallet.increv).text(sIncRev);
+		$($.fieldVars.wallet.newopps).text(numberWithCommas(iNewOppWallet));
+		$($.fieldVars.wallet.incrps).text(numberWithCommas(iIncRPS));
+		$($.fieldVars.wallet.increv).text(numberWithCommas(iIncRevWallet));
+
+		// Reducing customer churn calculations
+		iLaggardChurn = $.industVar.churn.low[$.dropdownVars.industry.value];
+		iLeaderChurn = $.industVar.churn.high[$.dropdownVars.industry.value];
+		iDiffChurn = -1*(iLeaderChurn - iLaggardChurn);
+		iChurnReconsider = Math.floor(($.sliderVars.customers.value * 1000000) * ($.dropdownVars.churnclose.value / 100) * (iDiffChurn / 100));
+		iRevBenChurn = iChurnReconsider * ($.dropdownVars.churnre.value / 100) * iIncRPS;
+
+		// Displaying customer churn calculations
+		$($.fieldVars.churn.laggards).text(iLaggardChurn + "%");
+		$($.fieldVars.churn.leaders).text(iLeaderChurn + "%");
+		$($.fieldVars.churn.diff).text(iDiffChurn);
+		$($.fieldVars.churn.churnre).text(numberWithCommas(iChurnReconsider));
+		$($.fieldVars.churn.incrps).text(numberWithCommas(iIncRPS));
+		$($.fieldVars.churn.increv).text(numberWithCommas(iRevBenChurn));
 
 	};
 
