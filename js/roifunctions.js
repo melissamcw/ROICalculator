@@ -67,6 +67,64 @@ $.industVar = {
 			retailers: 29,
 			wcs: 29
 		}
+	},
+	churn : {
+		low : {
+			airlines: 50,
+			banks: 61,
+			csp: 56,
+			conelect: 56,
+			ccp: 53,
+			hp: 49,
+			hotels: 59,
+			inpro: 58,
+			invfirm: 51,
+			isps: 56,
+			retailers: 52,
+			wcs: 55
+		},
+		high : {
+			airlines: 62,
+			banks: 75,
+			csp: 66,
+			conelect: 63,
+			ccp: 68,
+			hp: 60,
+			hotels: 61,
+			inpro: 68,
+			invfirm: 65,
+			isps: 66,
+			retailers: 57,
+			wcs: 63
+		},
+		dorecommend : {
+			airlines: 73,
+			banks: 61,
+			csp: 64,
+			conelect: 55,
+			ccp: 59,
+			hp: 61,
+			hotels: 77,
+			inpro: 62,
+			invfirm: 64,
+			isps: 62,
+			retailers: 72,
+			wcs: 68
+		},
+		peopletold : {
+			airlines: 3.4,
+			banks: 2.6,
+			csp: 3.1,
+			conelect: 4.5,
+			ccp: 2.3,
+			hp: 2.7,
+			hotels: 3.7,
+			inpro: 2.9,
+			invfirm: 2.8,
+			isps: 3.1,
+			retailers: 3.6,
+			wcs: 3.9
+		}
 	}
 };
 
@@ -75,7 +133,7 @@ $.dropdownVars = {
 		value: "airlines",
 		dropdown: "#IndustryDropdown"
 	},
-	walletclose : {
+	walletgap : {
 		value: 50,
 		dropdown: "#WalletGapDropdown"
 	},
@@ -83,13 +141,21 @@ $.dropdownVars = {
 		value: 30,
 		dropdown: "#WalletCloseRate"
 	},
-	churnclose : {
+	churngap : {
 		value: 50,
 		dropdown: "#ChurnGapDropdown"
 	},
 	churnre : {
 		value: 50,
 		dropdown: "#ChurnLoyalDropdown"
+	},
+	recgap : {
+		value: 50,
+		dropdown: "#RecGapDropdown"
+	},
+	recconvert : {
+		value: 2,
+		dropdown: "#RecConvertDropdown"
 	}
 };
 
@@ -160,6 +226,16 @@ $.fieldVars = {
 		churnre: "#ChurnReconsider",
 		incrps: "#ChurnIncRPS",
 		increv: "#ChurnIncRev"
+	},
+	rec: {
+		laggards: "#RecLaggards",
+		leaders: "#RecLeaders",
+		diff: "#RecDiff",
+		newrecs: "#NewRecs",
+		peopletold: "#PeopleTold",
+		dorec: "#DoRecommend",
+		incrps: "#RecIncRPS",
+		increv: "#RecIncRev"
 	}
 };
 			
@@ -221,7 +297,7 @@ $(function(){
 		iLaggardWallet = $.industVar.wallet.low[$.dropdownVars.industry.value];
 		iLeaderWallet = $.industVar.wallet.high[$.dropdownVars.industry.value];
 		iDiffWallet = iLeaderWallet - iLaggardWallet;
-		iNewOppWallet = Math.floor(($.sliderVars.customers.value * 1000000) * ($.dropdownVars.walletclose.value / 100) * (iDiffWallet / 100));
+		iNewOppWallet = Math.floor(($.sliderVars.customers.value * 1000000) * ($.dropdownVars.walletgap.value / 100) * (iDiffWallet / 100));
 		iIncRevWallet = iNewOppWallet * ($.dropdownVars.walletconvert.value / 100) * iIncRPS;
 
 		// Displaying wallet share calculations
@@ -236,7 +312,7 @@ $(function(){
 		iLaggardChurn = $.industVar.churn.low[$.dropdownVars.industry.value];
 		iLeaderChurn = $.industVar.churn.high[$.dropdownVars.industry.value];
 		iDiffChurn = -1*(iLeaderChurn - iLaggardChurn);
-		iChurnReconsider = Math.floor(($.sliderVars.customers.value * 1000000) * ($.dropdownVars.churnclose.value / 100) * (iDiffChurn / 100));
+		iChurnReconsider = Math.floor(($.sliderVars.customers.value * 1000000) * ($.dropdownVars.churngap.value / 100) * (iDiffChurn / 100));
 		iRevBenChurn = iChurnReconsider * ($.dropdownVars.churnre.value / 100) * iIncRPS;
 
 		// Displaying customer churn calculations
