@@ -167,15 +167,15 @@ $.sliderVars = {
 	customers  : {
 		slider: "#CustomersSlider",
 		label: "#lblCustomers",
-		value: 22,
+		value: 10,
 		min: 1,
-		max: 100,
+		max: 30,
 		step: 1
 	},
 	revbasic  : {
 		slider: "#RevBasicSlider",
 		label: "#lblRevBasic",
-		value: 500,
+		value: 100,
 		min: 10,
 		max: 5000,
 		step: 10
@@ -183,7 +183,7 @@ $.sliderVars = {
 	revenhan  : {
 		slider: "#RevEnhanSlider",
 		label: "#lblRevEnhan",
-		value: 1000,
+		value: 200,
 		min: 10,
 		max: 5000,
 		step: 10
