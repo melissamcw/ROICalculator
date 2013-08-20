@@ -5,4 +5,4 @@ Just a simple ROI calculator written in jQuery that takes advantage of sliders a
 [See the live demo here][1]
 
 
-[1]: http://127.0.0.1:8888/customer-experience-roi-calculator
+[1]: http://www.cxengage.com/customer-experience-roi-calculator
