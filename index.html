@@ -12,218 +12,227 @@
 	<body>
 
 		<!-- Dropdown Menus -->
-	<div class="container">
-		<div class="row-fluid">
-			<div class="span12">
-				<h4>Industry:</h4>
-				<select id="IndustryDropdown">
-					<option value="airlines">Airlines</option>
-					<option value="banks">Banks</option>
-					<option value="csp">Cable Service Providers</option>
-					<option value="conelect">Consumer Electronics</option>
-					<option value="ccp">Credit Card Providers</option>
-					<option value="hp">Health Plans</option>
-					<option value="hotels">Hotels</option>
-					<option value="inpro">Insurance Providers</option>
-					<option value="invfirm">Investment Firms</option>
-					<option value="isps">ISPs</option>
-					<option value="retailers">Retailers</option>
-					<option value="wcs">Wireless Carriers</option>
-				</select>
-			</div>
-		</div>
+<div id="content">
+  <div class="container">
+    <div class="row-fluid"> 
+      <!--Main Content-->
+      <div class="span9 blog-post">
+        <h2>Customer Experience ROI Calculator</h2>
+        
+        <h4 style="margin:0 0 3% 0;">It's no surprise that improving your customers' experience can increase your share-of-wallet from repeat purchases, reduce customer churn and create brand ambassadors. But what exactly is your ROI on these CX investments? This calculator should help answer that question.
+        </h4 >
+        <p>Start by picking your industry, the number of customers you have, and the difference in revenue between your regular customers and those that show loyalty to your brand:</p>
+    <div class="row-fluid">
+      <div class="span12">
+        <h4>Industry:</h4>
+        <select id="IndustryDropdown">
+          <option value="airlines">Airlines</option>
+          <option value="banks">Banks</option>
+          <option value="csp">Cable Service Providers</option>
+          <option value="conelect">Consumer Electronics</option>
+          <option value="ccp">Credit Card Providers</option>
+          <option value="hp">Health Plans</option>
+          <option value="hotels">Hotels</option>
+          <option value="inpro">Insurance Providers</option>
+          <option value="invfirm">Investment Firms</option>
+          <option value="isps">ISPs</option>
+          <option value="retailers">Retailers</option>
+          <option value="wcs">Wireless Carriers</option>
+        </select>
+      </div>
+    </div>
 
-		<div class="row-fluid">
-			<div class="span12">
-				<h4>Total Customers:</h4>
-				<div class="SliderLabel" id="lblCustomers"><span></span> Million</div>
-				<div id="CustomersSlider"></div>
-			</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span12">
-				<h4>Avg. Revenue Basic Customer:</h4>
-				<div class="SliderLabel" id="lblRevBasic">$<span></span></div>
-				<div id="RevBasicSlider"  class="initialize"></div>
-			</div>
-		</div>
+    <div class="row-fluid">
+      <div class="span12">
+        <h4>Total Customers:</h4>
+        <div class="SliderLabel" id="lblCustomers"><span></span> Million</div>
+        <div id="CustomersSlider"></div>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span12">
+        <h4>Avg. Revenue Per Customer:</h4>
+        <div class="SliderLabel" id="lblRevBasic">$<span></span></div>
+        <div id="RevBasicSlider"  class="initialize"></div>
+      </div>
+    </div>
 
-		<div class="row-fluid">
-			<div class="span12">
-				<h4>Avg. Revenue Enhanced Customer:</h4>
-				<div class="SliderLabel" id="lblRevEnhan">$<span></span></div>
-				<div id="RevEnhanSlider"  class="initialize"></div>
-			</div>
-		</div>
+    <div class="row-fluid">
+      <div class="span12">
+        <h4>Avg. Revenue for a Loyal Customer:</h4>
+        <div class="SliderLabel" id="lblRevEnhan">$<span></span></div>
+        <div id="RevEnhanSlider"  class="initialize"></div>
+      </div>
+    </div>
 
-		<div class="row-fluid">
-			<div class="span12">
-				<h3>Increase Share of Wallet - Repeat Purchase</h3>
-				<p>According to the <em>Temkin Group Q1 2012 Consumer Benchmark</em>, customers of leaders in this industry have a willingness to repurchase of <strong><span id="WalletLeaders"></span></strong>, while customers of laggards only had <strong><span id="WalletLaggards"></span></strong> - a difference of <strong><span id="WalletDiff"></span></strong> points.</p><br />
-			</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span12">
-				<p>If you close that point gap by <select id="WalletGapDropdown" style="width: 70px;">
-					<option value="0">0%</option>
-					<option value="5">5%</option>
-					<option value="10">10%</option>
-					<option value="15">15%</option>
-					<option value="20">20%</option>
-					<option value="25">25%</option>
-					<option value="30">30%</option>
-					<option value="35">35%</option>
-					<option value="40">40%</option>
-					<option value="45">45%</option>
-					<option value="50">50%</option>
-					<option value="55">55%</option>
-					<option value="60">60%</option>
-					<option value="65">65%</option>
-					<option value="70">70%</option>
-					<option value="75">75%</option>
-					<option value="80">80%</option>
-					<option value="85">85%</option>
-					<option value="90">90%</option>
-					<option value="95">95%</option>
-					<option value="100">100%</option>
-				</select>, this will result in <strong><span id="WalletNewOpps"></span></strong> new sales opportunities. If sales opportunities close at a rate of <select id="WalletCloseRate" style="width: 70px;">
-					<option value="0">0%</option>
-					<option value="5">5%</option>
-					<option value="10">10%</option>
-					<option value="15">15%</option>
-					<option value="20">20%</option>
-					<option value="25">25%</option>
-					<option value="30">30%</option>
-					<option value="35">35%</option>
-					<option value="40">40%</option>
-					<option value="45">45%</option>
-					<option value="50">50%</option>
-					<option value="55">55%</option>
-					<option value="60">60%</option>
-					<option value="65">65%</option>
-					<option value="70">70%</option>
-					<option value="75">75%</option>
-					<option value="80">80%</option>
-					<option value="85">85%</option>
-					<option value="90">90%</option>
-					<option value="95">95%</option>
-					<option value="100">100%</option></select>, and the average deal increases in value by <strong>$<span id="WalletIncRPS"></span></strong>, this will result in a total revenue increase of <strong>$<span id="WalletIncRev"></span></strong></p>
+    <div class="row-fluid">
+      <div class="span12">
+        <h3>Increase Share of Wallet - Repeat Purchase</h3>
+        <p>Customers of leaders in this industry have a willingness to repurchase of <strong><span id="WalletLeaders"></span></strong>, while customers of laggards only had <strong><span id="WalletLaggards"></span></strong> - a difference of <strong><span id="WalletDiff"></span></strong> points.<sup>1</sup></p>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span12">
+        <p>If you close that point gap by <select id="WalletGapDropdown" style="width: 70px;">
+          <option value="0">0%</option>
+          <option value="5">5%</option>
+          <option value="10">10%</option>
+          <option value="15">15%</option>
+          <option value="20">20%</option>
+          <option value="25">25%</option>
+          <option value="30">30%</option>
+          <option value="35">35%</option>
+          <option value="40">40%</option>
+          <option value="45">45%</option>
+          <option value="50">50%</option>
+          <option value="55">55%</option>
+          <option value="60">60%</option>
+          <option value="65">65%</option>
+          <option value="70">70%</option>
+          <option value="75">75%</option>
+          <option value="80">80%</option>
+          <option value="85">85%</option>
+          <option value="90">90%</option>
+          <option value="95">95%</option>
+          <option value="100">100%</option>
+        </select>, this will result in <strong><span id="WalletNewOpps"></span></strong> new sales opportunities. If sales opportunities close at a rate of <select id="WalletCloseRate" style="width: 70px;">
+          <option value="0">0%</option>
+          <option value="5">5%</option>
+          <option value="10">10%</option>
+          <option value="15">15%</option>
+          <option value="20">20%</option>
+          <option value="25">25%</option>
+          <option value="30">30%</option>
+          <option value="35">35%</option>
+          <option value="40">40%</option>
+          <option value="45">45%</option>
+          <option value="50">50%</option>
+          <option value="55">55%</option>
+          <option value="60">60%</option>
+          <option value="65">65%</option>
+          <option value="70">70%</option>
+          <option value="75">75%</option>
+          <option value="80">80%</option>
+          <option value="85">85%</option>
+          <option value="90">90%</option>
+          <option value="95">95%</option>
+          <option value="100">100%</option></select>, and the average deal increases in value by <strong>$<span id="WalletIncRPS"></span></strong>, this will result in a total revenue increase of <strong>$<span id="WalletIncRev"></span></strong></p>
 
-					<p class="revpercust">This represents a revenue benefit per customer of <strong>$<span id="RPCWallet"></span></strong>.</p>
-			</div>
-		</div>
+          <div class="revpercust">This represents a revenue benefit per customer of <strong>$<span id="RPCWallet"></span></strong>.</div>
+      </div>
+    </div>
 
-		<div class="row-fluid">
-			<div class="span12">
-				<h3>Reduce Customer Churn Expense</h3>
-				<p>According to the <em>Temkin Group Q1 2012 Consumer Benchmark</em>, customers of leaders in this industry have a likelihood to switch to a competitor of <strong><span id="ChurnLeaders"></span></strong>, while customers of laggards had <strong><span id="ChurnLaggards"></span></strong> - a difference of <strong><span id="ChurnDiff"></span></strong> points.</p><br />
-			</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span12">
-				<p>If you close that point gap by <select id="ChurnGapDropdown" style="width: 70px;">
-					<option value="0">0%</option>
-					<option value="5">5%</option>
-					<option value="10">10%</option>
-					<option value="15">15%</option>
-					<option value="20">20%</option>
-					<option value="25">25%</option>
-					<option value="30">30%</option>
-					<option value="35">35%</option>
-					<option value="40">40%</option>
-					<option value="45">45%</option>
-					<option value="50">50%</option>
-					<option value="55">55%</option>
-					<option value="60">60%</option>
-					<option value="65">65%</option>
-					<option value="70">70%</option>
-					<option value="75">75%</option>
-					<option value="80">80%</option>
-					<option value="85">85%</option>
-					<option value="90">90%</option>
-					<option value="95">95%</option>
-					<option value="100">100%</option>
-				</select>, this will result in <strong><span id="ChurnReconsider"></span></strong> customers reconsidering their decision to switch. If <select id="ChurnLoyalDropdown" style="width: 70px;">
-					<option value="0">0%</option>
-					<option value="5">5%</option>
-					<option value="10">10%</option>
-					<option value="15">15%</option>
-					<option value="20">20%</option>
-					<option value="25">25%</option>
-					<option value="30">30%</option>
-					<option value="35">35%</option>
-					<option value="40">40%</option>
-					<option value="45">45%</option>
-					<option value="50">50%</option>
-					<option value="55">55%</option>
-					<option value="60">60%</option>
-					<option value="65">65%</option>
-					<option value="70">70%</option>
-					<option value="75">75%</option>
-					<option value="80">80%</option>
-					<option value="85">85%</option>
-					<option value="90">90%</option>
-					<option value="95">95%</option>
-					<option value="100">100%</option></select> of those remain loyal and do not switch, and the average deal increases in value by <strong>$<span id="ChurnIncRPS"></span></strong>, this will result in a total revenue benefit of <strong>$<span id="ChurnIncRev"></span></strong></p>
+    <div class="row-fluid">
+      <div class="span12">
+        <h3>Reduce Customer Churn Expense</h3>
+        <p>Customers of leaders in this industry have a likelihood to switch to a competitor of <strong><span id="ChurnLeaders"></span></strong>, while customers of laggards had <strong><span id="ChurnLaggards"></span></strong> - a difference of <strong><span id="ChurnDiff"></span></strong> points.<sup>1</sup></p>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span12">
+        <p>If you close that point gap by <select id="ChurnGapDropdown" style="width: 70px;">
+          <option value="0">0%</option>
+          <option value="5">5%</option>
+          <option value="10">10%</option>
+          <option value="15">15%</option>
+          <option value="20">20%</option>
+          <option value="25">25%</option>
+          <option value="30">30%</option>
+          <option value="35">35%</option>
+          <option value="40">40%</option>
+          <option value="45">45%</option>
+          <option value="50">50%</option>
+          <option value="55">55%</option>
+          <option value="60">60%</option>
+          <option value="65">65%</option>
+          <option value="70">70%</option>
+          <option value="75">75%</option>
+          <option value="80">80%</option>
+          <option value="85">85%</option>
+          <option value="90">90%</option>
+          <option value="95">95%</option>
+          <option value="100">100%</option>
+        </select>, this will result in <strong><span id="ChurnReconsider"></span></strong> customers reconsidering their decision to switch. If <select id="ChurnLoyalDropdown" style="width: 70px;">
+          <option value="0">0%</option>
+          <option value="5">5%</option>
+          <option value="10">10%</option>
+          <option value="15">15%</option>
+          <option value="20">20%</option>
+          <option value="25">25%</option>
+          <option value="30">30%</option>
+          <option value="35">35%</option>
+          <option value="40">40%</option>
+          <option value="45">45%</option>
+          <option value="50">50%</option>
+          <option value="55">55%</option>
+          <option value="60">60%</option>
+          <option value="65">65%</option>
+          <option value="70">70%</option>
+          <option value="75">75%</option>
+          <option value="80">80%</option>
+          <option value="85">85%</option>
+          <option value="90">90%</option>
+          <option value="95">95%</option>
+          <option value="100">100%</option></select> of those remain loyal and do not switch, and the average deal size is <strong>$<span id="ChurnIncRPS"></span></strong>, this will result in a total revenue benefit of <strong>$<span id="ChurnIncRev"></span></strong></p>
 
-					<p class="revpercust">This represents a revenue benefit per customer of <strong>$<span id="RPCChurn"></span></strong>.</p>
-			</div>
-		</div>
+          <div class="revpercust">This represents a revenue benefit per customer of <strong>$<span id="RPCChurn"></span></strong>.</div>
+      </div>
+    </div>
 
-		<div class="row-fluid">
-			<div class="span12">
-				<h3>Increased Revenue From Word of Mouth</h3>
-				<p>According to the <em>Temkin Group Q1 2012 Consumer Benchmark</em>, customers of leaders in this industry have a likelihood to recommend of <strong><span id="RecLeaders"></span></strong>, while customers of laggards had <strong><span id="RecLaggards"></span></strong> - a difference of <strong><span id="RecDiff"></span></strong> points.</p><br />
-			</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span12">
-				<p>If you close that point gap by <select id="RecGapDropdown" style="width: 70px;">
-					<option value="0">0%</option>
-					<option value="5">5%</option>
-					<option value="10">10%</option>
-					<option value="15">15%</option>
-					<option value="20">20%</option>
-					<option value="25">25%</option>
-					<option value="30">30%</option>
-					<option value="35">35%</option>
-					<option value="40">40%</option>
-					<option value="45">45%</option>
-					<option value="50">50%</option>
-					<option value="55">55%</option>
-					<option value="60">60%</option>
-					<option value="65">65%</option>
-					<option value="70">70%</option>
-					<option value="75">75%</option>
-					<option value="80">80%</option>
-					<option value="85">85%</option>
-					<option value="90">90%</option>
-					<option value="95">95%</option>
-					<option value="100">100%</option>
-				</select>, this will result in <strong><span id="NewRecs"></span></strong> new recommenders. For this industry, according to the <em>Forrester North American Technographics&#174 Customer Experience Online Survey, Q4 2011 (US)</em>, <strong><span id="DoRecommend"></span></strong> of people will tell on average <strong><span id="PeopleTold"></span></strong> friends, creating <strong><span id="NewRecommendations"></span></strong> new recommendations. If <select id="RecConvertDropdown" style="width: 70px;">
-					<option value="0">0%</option>
-					<option value="1">1%</option>
-					<option value="2">2%</option>
-					<option value="3">3%</option>
-					<option value="4">4%</option>
-					<option value="5">5%</option>
-					<option value="6">6%</option>
-					<option value="7">7%</option>
-					<option value="8">8%</option>
-					<option value="9">9%</option>
-					<option value="10">10%</option>
-					<option value="11">11%</option>
-					<option value="12">12%</option>
-					<option value="13">13%</option>
-					<option value="14">14%</option>
-					<option value="15">15%</option>
-					</select> convert to a purchase, and the average deal increases in value by <strong>$<span id="RecIncRPS"></span></strong>, this will result in a total revenue benefit of <strong>$<span id="RecIncRev"></span></strong></p>
+    <div class="row-fluid">
+      <div class="span12">
+        <h3>Increased Revenue From Word of Mouth</h3>
+        <p>Customers of leaders in this industry have a likelihood to recommend of <strong><span id="RecLeaders"></span></strong>, while customers of laggards had <strong><span id="RecLaggards"></span></strong> - a difference of <strong><span id="RecDiff"></span></strong> points.<sup>1</sup></p>
+      </div>
+    </div>
+    <div class="row-fluid" style="margin-bottom:50px;">
+      <div class="span12">
+        <p>If you close that point gap by <select id="RecGapDropdown" style="width: 70px;">
+          <option value="0">0%</option>
+          <option value="5">5%</option>
+          <option value="10">10%</option>
+          <option value="15">15%</option>
+          <option value="20">20%</option>
+          <option value="25">25%</option>
+          <option value="30">30%</option>
+          <option value="35">35%</option>
+          <option value="40">40%</option>
+          <option value="45">45%</option>
+          <option value="50">50%</option>
+          <option value="55">55%</option>
+          <option value="60">60%</option>
+          <option value="65">65%</option>
+          <option value="70">70%</option>
+          <option value="75">75%</option>
+          <option value="80">80%</option>
+          <option value="85">85%</option>
+          <option value="90">90%</option>
+          <option value="95">95%</option>
+          <option value="100">100%</option>
+        </select>, this will result in <strong><span id="NewRecs"></span></strong> new recommenders. For this industry, <strong><span id="DoRecommend"></span></strong> of people will tell on average <strong><span id="PeopleTold"></span></strong> friends, creating <strong><span id="NewRecommendations"></span></strong> new recommendations.<sup>2</sup> If <select id="RecConvertDropdown" style="width: 70px;">
+          <option value="0">0%</option>
+          <option value="1">1%</option>
+          <option value="2">2%</option>
+          <option value="3">3%</option>
+          <option value="4">4%</option>
+          <option value="5">5%</option>
+          <option value="6">6%</option>
+          <option value="7">7%</option>
+          <option value="8">8%</option>
+          <option value="9">9%</option>
+          <option value="10">10%</option>
+          <option value="11">11%</option>
+          <option value="12">12%</option>
+          <option value="13">13%</option>
+          <option value="14">14%</option>
+          <option value="15">15%</option>
+          </select> convert to a purchase, and the average deal size is <strong>$<span id="RecIncRPS"></span></strong>, this will result in a total revenue benefit of <strong>$<span id="RecIncRev"></span></strong></p>
 
-					<p class="revpercust">This represents a revenue benefit per customer of <strong>$<span id="RPCRec"></span></strong>.</p>
-			</div>
-		</div>
-			
-		</div>
+          <div class="revpercust">This represents a revenue benefit per customer of <strong>$<span id="RPCRec"></span></strong>.</div>
+          <div class="citation">1. Temkin Group: The ROI of Customer Experience (March 2012)<br />
+          2. Forrester North American Technographics&#174 Customer Experience Online Survey, Q4 2011 (US)</div>
+      </div>
+    </div>
 		<script type=text/javascript src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type=text/javascript src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="/js/roifunctions.js"></script>
