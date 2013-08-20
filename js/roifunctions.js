@@ -4,6 +4,7 @@
 // give consistency between the slider IDs, the labels that correspond to them
 // and the variables that represent them in code.
 
+
 // A namespace for storing all the variables used in the calculations
 $.industVar = {
 	// arrExample : [ item ID, item label ID, value ]
@@ -268,10 +269,11 @@ $(function(){
 
 	// The formula used to calculate the output value when the slider is moved or a dropdown in changed.
 	function calcOutput() { 
-		var iIncRPS, iLaggardWallet, iLeaderWallet, iDiffWallet, iNewOppWallet, iIncRevWallet, fRPCWallet, iLaggardChurn, iLeaderChurn, iDiffChurn, iChurnReconsider, iRevBenChurn, fRPCChurn, iLaggardRec, iLeaderRec, iRecs, iDoRecommend, fPeopleTold, iTotalRecs, iRevBenRec, fRPCRec
+		var iIncRPS, iAvgDeal, iLaggardWallet, iLeaderWallet, iDiffWallet, iNewOppWallet, iIncRevWallet, fRPCWallet, iLaggardChurn, iLeaderChurn, iDiffChurn, iChurnReconsider, iRevBenChurn, fRPCChurn, iLaggardRec, iLeaderRec, iRecs, iDoRecommend, fPeopleTold, iTotalRecs, iRevBenRec, fRPCRec
 		
 		// Variables used for multiple calculations
 		iIncRPS = $.sliderVars.revenhan.value - $.sliderVars.revbasic.value;
+		iAvgDeal = $.sliderVars.revbasic.value;
 
 		// Increasing Wallet-share Calculations
 		iLaggardWallet = $.industVar.wallet.low[$.dropdownVars.industry.value];
@@ -279,9 +281,9 @@ $(function(){
 		iDiffWallet = iLeaderWallet - iLaggardWallet;
 		iNewOppWallet = Math.floor(($.sliderVars.customers.value * 1000000) * ($.dropdownVars.walletgap.value / 100) * (iDiffWallet / 100));
 		iIncRevWallet = iNewOppWallet * ($.dropdownVars.walletconvert.value / 100) * iIncRPS;
-		fRPCWallet = iIncRevWallet / ($.sliderVars.customers.value * 1000000)
+		fRPCWallet = iIncRevWallet / ($.sliderVars.customers.value * 1000000);
 		// Round to two decimal places
-		fRPCWallet = Math.round(fRPCWallet*100)/100
+		fRPCWallet = fRPCWallet.toFixed(2);
 
 		// Displaying wallet share calculations
 		$($.fieldVars.wallet.laggards).text(iLaggardWallet + "%");
@@ -297,17 +299,17 @@ $(function(){
 		iLeaderChurn = $.industVar.churn.high[$.dropdownVars.industry.value];
 		iDiffChurn = -1*(iLeaderChurn - iLaggardChurn);
 		iChurnReconsider = Math.floor(($.sliderVars.customers.value * 1000000) * ($.dropdownVars.churngap.value / 100) * (iDiffChurn / 100));
-		iRevBenChurn = iChurnReconsider * ($.dropdownVars.churnre.value / 100) * iIncRPS;
-		fRPCChurn = iRevBenChurn / ($.sliderVars.customers.value * 1000000)
+		iRevBenChurn = iChurnReconsider * ($.dropdownVars.churnre.value / 100) * iAvgDeal;
+		fRPCChurn = iRevBenChurn / ($.sliderVars.customers.value * 1000000);
 		// Round to two decimal places
-		fRPCChurn = Math.round(fRPCChurn*100)/100
+		fRPCChurn = fRPCChurn.toFixed(2);
 
 		// Displaying customer churn calculations
 		$($.fieldVars.churn.laggards).text(iLaggardChurn + "%");
 		$($.fieldVars.churn.leaders).text(iLeaderChurn + "%");
 		$($.fieldVars.churn.diff).text(iDiffChurn);
 		$($.fieldVars.churn.churnre).text(numberWithCommas(iChurnReconsider));
-		$($.fieldVars.churn.incrps).text(numberWithCommas(iIncRPS));
+		$($.fieldVars.churn.incrps).text(numberWithCommas(iAvgDeal));
 		$($.fieldVars.churn.increv).text(numberWithCommas(iRevBenChurn));
 		$($.fieldVars.churn.rpc).text(fRPCChurn);
 
@@ -319,10 +321,10 @@ $(function(){
 		iDoRecommend = $.industVar.rec.dorecommend[$.dropdownVars.industry.value];
 		fPeopleTold = $.industVar.rec.peopletold[$.dropdownVars.industry.value];
 		iTotalRecs = Math.floor(iRecs * (iDoRecommend / 100) * fPeopleTold);
-		iRevBenRec = iTotalRecs * ($.dropdownVars.recconvert.value / 100) * iIncRPS;
-		fRPCRec = iRevBenRec / ($.sliderVars.customers.value * 1000000)
+		iRevBenRec = iTotalRecs * ($.dropdownVars.recconvert.value / 100) * iAvgDeal;
+		fRPCRec = iRevBenRec / ($.sliderVars.customers.value * 1000000);	
 		// Round to two decimal places
-		fRPCRec = Math.round(fRPCRec*100)/100
+		fRPCRec = fRPCRec.toFixed(2);
 
 
 		// Displaying word of mouth calculations
@@ -333,7 +335,7 @@ $(function(){
 		$($.fieldVars.rec.dorec).text(iDoRecommend + "%");
 		$($.fieldVars.rec.peopletold).text(fPeopleTold);
 		$($.fieldVars.rec.totalrecs).text(numberWithCommas(iTotalRecs));
-		$($.fieldVars.rec.incrps).text(numberWithCommas(iIncRPS));
+		$($.fieldVars.rec.incrps).text(numberWithCommas(iAvgDeal));
 		$($.fieldVars.rec.increv).text(numberWithCommas(iRevBenRec));
 		$($.fieldVars.rec.rpc).text(fRPCRec);
 
