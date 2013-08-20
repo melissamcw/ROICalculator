@@ -1,8 +1,5 @@
 // All of the calculations can be found at the bottom of the document.
 // The variables are collected at the top for easy editing and changing.
-// The naming system used is quite straight forward, and is meant to 
-// give consistency between the slider IDs, the labels that correspond to them
-// and the variables that represent them in code.
 
 
 // A namespace for storing all the variables used in the calculations
@@ -129,6 +126,8 @@ $.industVar = {
 	}
 };
 
+// When you create a new dropdown menu, place the initial value and dropdown ID here
+// It will automatically set the correct value on the page.
 $.dropdownVars = {
 	industry  : {
 		value: "airlines",
@@ -160,6 +159,10 @@ $.dropdownVars = {
 	}
 };
 
+
+// When you create new slider and label divs, put the slider ID and div
+// ID here, along with the slider's initial value, min/max and step amount. This
+// will initialize everything for you.
 $.sliderVars = {
 	customers  : {
 		slider: "#CustomersSlider",
@@ -187,6 +190,8 @@ $.sliderVars = {
 	}
 };
 
+// This is where you keep track of all the spans/divs that will have content
+// live updated as you change the sliders/dropdowns.
 $.fieldVars = {
 	wallet: {
 		laggards: "#WalletLaggards",
@@ -221,17 +226,16 @@ $.fieldVars = {
 };
 			
 $(function(){
-
-	// Initialize the sliders
+	// This initializes all of the sliders
 	$.each($.sliderVars, function(key, sliderObject) {
 		$(sliderObject.slider).slider({
 			// Occurs when the user begins to move the slider
 			slide: function( event, ui ) {
-			SlideFunction(sliderObject, ui);
+				SlideFunction(sliderObject, ui);
 			},
 			// Occurs when the slider stops moving
 			change: function( event, ui) {
-			SlideChange(sliderObject, ui);
+				SlideChange(sliderObject, ui);
 			},
 			// Initializes the slider values
 			value: sliderObject.value,
@@ -239,6 +243,8 @@ $(function(){
 			max: sliderObject.max,
 			step: sliderObject.step
 		});
+		// A span is used here so that you can enter symbols like dollar signs
+		// on the label without needing to code them in.
 		$(sliderObject.label + ">span").text(numberWithCommas(sliderObject.value));
 	});
 	
@@ -246,14 +252,14 @@ $(function(){
 	$.each($.dropdownVars, function(key, dropdownObject) {
 		$(dropdownObject.dropdown).change(function() {
 			dropdownObject.value = $(this).val();
-			calcOutput();
+			calcOutput(); // Updates all the values
 		});
-		$(dropdownObject.dropdown).val(dropdownObject.value)
+		$(dropdownObject.dropdown).val(dropdownObject.value) //Stores the new value in memory
 	});
 
 	// Activated when the slider moves. Updates the label for the slider.
 	function SlideFunction(guiItem, ui) {
-	// There is a bug in some old browers that make this go negative. This fixes that.
+	// There is a bug in some old browsers that make this go negative. This fixes that.
 		if (ui.value == -1) {
 			ui.value = 0;
 			};
@@ -261,7 +267,6 @@ $(function(){
 	};
 
 	// Activated when the slider stops. Updates the value of the slider, and calls the function that calculates the output.
-	// Do not combine this with the SlideFunction function, or else the values will always be one step behind.
 	function SlideChange(guiItem, ui) {
 		guiItem.value = $(guiItem.slider).slider("option", "value");
 		calcOutput();
@@ -341,6 +346,7 @@ $(function(){
 
 	};
 
+	// Used to add commas to large numbers to improve readability
 	function numberWithCommas(x) {
     	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}

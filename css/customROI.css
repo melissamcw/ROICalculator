@@ -8,13 +8,30 @@
 	font-size:1.7em;
 	font-style:italic;
 	margin-top:15px;
+	border: solid 1px #eff1f1;
+	padding: 40px;
+	text-align: center;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: #ededed url(../img/backgrounds/paper_fibers.png) left top repeat;
+}
+
+.citation {
+	color: #d5d5d5;
+	font-size: 0.7em;
+	margin-top: 20px;
 }
 
 p {
-	font-size:1.3em;
+	font-size:1.2em;
+	color: #333 !important;
 }
 
 select {
-	margin-bottom: 0;
-	font-weight: bold;
+	font-weight: bold !important;
+	font-size: 13px !important;
+	line-height: 20px !important;
+	height: 23px !important;
+	margin-bottom:4px !important;
 }
