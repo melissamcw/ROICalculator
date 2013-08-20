@@ -4,5 +4,16 @@ Just a simple ROI calculator written in jQuery that takes advantage of sliders a
 
 [See the live demo here][1]
 
+# General Use
+
+To add static data, update the objects in the $.industVar namespace.
+
+To add a new dropdown, create your dropdown on the page and then set the initial value using $.dropdownVars (that is, do not place it in the HTML, as this will cause issues if you forget to update it manually later). Also, add the ID there as well.
+
+To add a new slider, add two divs: one for the slider label, and one for the slider. Place initial values and div IDs in $.sliderVars.
+
+To add new fields to be updated, create them in the HTML and then add their ID to $.fieldVars object, which has objects to keep things organized.
+
+All your math should go in the calcOutput() function, which can both compute and display the changes as they happen.
 
 [1]: http://www.cxengage.com/customer-experience-roi-calculator
