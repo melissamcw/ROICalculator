@@ -16,4 +16,11 @@ To add new fields to be updated, create them in the HTML and then add their ID t
 
 All your math should go in the calcOutput() function, which can both compute and display the changes as they happen.
 
+# Files
+
+index.html: used to display everything (as expected)
+/js/roifunctions.js: Where all the action is
+
+Everything is is either Bootstrap or jQuery.
+
 [1]: http://www.cxengage.com/customer-experience-roi-calculator
